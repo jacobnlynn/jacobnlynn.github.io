@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Jacob Lynn</title>
+  <link rel="stylesheet" href="format.css">
+</head>
+<body>
+<div id="page">
+
+  <div id="tabs">
+    <a href="index.html" class="home current">Jacob Lynn</a>
+    <a href="limbed_robot.html">Limbed Robot Project</a>
+    <a href="europa_lander.html">Europa - Benthic Lander</a>
+    <!-- ARMLab hidden for now: <a href="stanford_armlab.html">Stanford ARMLab</a> -->
+    <a href="irec_payload.html">IREC - Payload</a>
+  </div>
+  <div id="panel">
+
+    <h2>About Me</h2>
+    <hr>
+    <p>
+      Hi! I'm Jacob Lynn and I am a sophomore (Class of 2029) studying mechanical engineering with a minor in 
+      comp sci at Stanford University. I also do research in the Stanford ARMLab where I work on electromagnetic robotic muscles
+       for tendon-driven robot hands! I'm interested in robotics and space and I've always loved to create. My dream job would someday
+        be to work on space robotics :). This website is meant to serve as a portfolio of what I have made in college so far! I hope 
+        you look around, and please reach out to me if you have any questions or thoughts: <a href="mailto:jnlynn@stanford.edu">jnlynn@stanford.edu</a>
+    </p>
+
+    <h2>Resume</h2>
+    <hr>
+    <a href="resume.pdf" id="resume-link" class="thumb">
+      <img src="resume_preview.jpg" alt="View my resume">
+      <span>resume.pdf</span>
+    </a>
+
+    <h2>Projects</h2>
+    <hr>
+    <div class="thumbs">
+      <a href="limbed_robot.html" class="thumb project">
+        <img src="limbed_robot_preview.jpg" alt="Limbed Robot Project">
+        <span>Limbed Robot Project</span>
+      </a>
+      <a href="europa_lander.html" class="thumb project">
+        <img src="europa_lander_preview.jpg" alt="Europa - Benthic Lander">
+        <span>Europa - Benthic Lander</span>
+      </a>
+      <!-- ARMLab hidden for now
+      <a href="stanford_armlab.html" class="thumb project">
+        <img src="stanford_armlab_preview.jpg" alt="Stanford ARMLab">
+        <span>Stanford ARMLab</span>
+      </a>
+      -->
+      <a href="irec_payload.html" class="thumb project">
+        <img src="irec_payload_preview.jpg" alt="IREC - Payload">
+        <span>IREC - Payload</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Pop-up window for the resume, opened by personal_code.js -->
+  <dialog id="resume-window">
+    <div class="titlebar">
+      <span>resume.pdf</span>
+      <button id="resume-close" aria-label="Close">X</button>
+    </div>
+    <iframe title="Resume"></iframe>
+  </dialog>
+
+</div>
+<script src="personal_code.js"></script>
+</body>
+</html>

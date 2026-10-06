@@ -1,0 +1,397 @@
+/* Plain mid-90s look: browser-default fonts, gray background, blue links */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #008080;
+  color: #000000;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 10px;
+}
+
+/* Raised gray box filling nearly the whole window */
+#page {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 20px);
+  padding: 8px 12px 12px 12px;
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+}
+
+h2 {
+  font-size: 24px;
+  margin: 28px 0 4px 0;
+}
+
+/* Subsection heading: smaller, no rule under it */
+h3 {
+  font-size: 19px;
+  margin: 18px 0 4px 0;
+}
+
+#panel > h2:first-child {
+  margin-top: 4px;
+}
+
+p {
+  line-height: 1.4;
+}
+
+/* Old-style engraved rule */
+hr {
+  border: none;
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid #ffffff;
+  height: 0;
+}
+
+a:link    { color: #0000ee; }
+a:visited { color: #551a8b; }
+a:active  { color: #ff0000; }
+
+/* ---- Tabs ---- */
+
+#tabs {
+  display: flex;
+  align-items: flex-end;
+  padding-left: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+#tabs a {
+  padding: 3px 12px;
+  background-color: #c0c0c0;
+  color: #000000;
+  text-decoration: none;
+  border: 2px solid;
+  border-color: #ffffff #404040 #c0c0c0 #ffffff;
+  border-bottom: none;
+}
+
+/* Home tab, larger than the rest */
+#tabs a.home {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 4px 16px;
+}
+
+/* Selected tab sits taller and covers the panel's top edge */
+#tabs a.current {
+  padding-top: 6px;
+  margin-bottom: -2px;
+  border-bottom: 2px solid #c0c0c0;
+  font-weight: bold;
+}
+
+#tabs a:hover {
+  text-decoration: underline;
+}
+
+/* Content area stretches to the bottom of the box */
+#panel {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+}
+
+/* ---- Clickable thumbnail (resume preview) ---- */
+
+.thumb {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.thumb img {
+  display: block;
+  width: 250px;
+  min-height: 100px;
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: #404040 #ffffff #ffffff #404040;
+}
+
+.thumb span {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 0 2px;
+  font-size: 14px;
+}
+
+.thumb:hover span {
+  background-color: #000080;
+  color: #ffffff;
+}
+
+/* Row of project thumbnails, all cropped to the same size */
+.thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.thumb.project {
+  width: 204px;
+}
+
+.thumb.project img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+}
+
+/* ---- Image row with captions (project pages) ---- */
+/* Images share the full width equally; wraps on narrow screens */
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.gallery figure {
+  flex: 1 1 150px;
+  margin: 0;
+  text-align: center;
+}
+
+.gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: #404040 #ffffff #ffffff #404040;
+}
+
+.gallery figcaption {
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+/* ---- Picture beside text (project pages) ---- */
+
+/* Keeps a floated picture inside its own section */
+.section {
+  display: flow-root;
+}
+
+/* Pictures on the right; text runs beside them, then under them.
+   Goes right before the <p>; the 20px top margin (paragraph gap + 4px)
+   lines its top up with the first line of text. */
+.float-right {
+  float: right;
+  width: 35%;
+  max-width: 420px;
+  margin: 20px 0 8px 16px;
+}
+
+/* Wider version for landscape pictures */
+.float-right.wide {
+  width: 38%;
+  max-width: 500px;
+}
+
+.float-right figure {
+  margin: 0;
+  text-align: center;
+}
+
+.float-right img {
+  display: block;
+  width: 100%;
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: #404040 #ffffff #ffffff #404040;
+}
+
+.float-right figcaption {
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+/* Row of small square pictures under the text; sits beside a
+   .float-right picture instead of running behind it */
+.mini-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.mini-row figure {
+  width: 130px;
+  margin: 0;
+  text-align: center;
+}
+
+.mini-row img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: #404040 #ffffff #ffffff #404040;
+}
+
+.mini-row figcaption {
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+/* ---- Pop-up windows (resume, CAD viewer) ---- */
+
+dialog {
+  width: 90vw;
+  height: 90vh;
+  max-width: none;
+  max-height: none;
+  padding: 2px;
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+}
+
+dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 2px 2px 6px;
+  background-color: #000080;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.titlebar button {
+  width: 22px;
+  height: 20px;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  background-color: #c0c0c0;
+  color: #000000;
+  border: 2px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+  cursor: pointer;
+}
+
+.titlebar button:active {
+  border-color: #404040 #ffffff #ffffff #404040;
+}
+
+dialog iframe {
+  flex: 1;
+  width: 100%;
+  margin-top: 2px;
+  border: 2px solid;
+  border-color: #404040 #ffffff #ffffff #404040;
+  background-color: #ffffff;
+}
+
+/* ---- Interactive CAD (cad_viewer.js) ---- */
+
+/* Small window-style preview that opens the viewer when clicked */
+.cad-launch {
+  display: block;
+  width: 300px;
+  margin: 8px 0;
+  padding: 2px;
+  font-family: inherit;
+  font-size: 16px;
+  text-align: center;
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+  cursor: pointer;
+}
+
+.cad-launch img {
+  display: block;
+  width: 100%;
+  margin-top: 2px;
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: #404040 #ffffff #ffffff #404040;
+}
+
+/* Long file names get cut off with "..." in the small title bar */
+.cad-launch .titlebar span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+/* Several CAD windows side by side; wraps on narrow screens */
+.cad-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.cad-row .cad-launch {
+  flex: 1 1 200px;
+  width: auto;
+  max-width: 300px;
+  margin: 0;
+}
+
+.cad-hint {
+  display: block;
+  padding: 3px 0 1px 0;
+  font-size: 14px;
+}
+
+.cad-launch:hover .cad-hint {
+  text-decoration: underline;
+}
+
+.cad-launch:active {
+  border-color: #404040 #ffffff #ffffff #404040;
+}
+
+/* 3D drawing area inside the pop-up */
+.cad-view {
+  flex: 1;
+  min-height: 0;
+  margin-top: 2px;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: #404040 #ffffff #ffffff #404040;
+}
+
+.cad-view canvas {
+  display: block;
+}
+
+/* Sunken bar along the bottom of a window */
+.statusbar {
+  margin-top: 2px;
+  padding: 2px 6px;
+  font-size: 14px;
+  border: 1px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+}
