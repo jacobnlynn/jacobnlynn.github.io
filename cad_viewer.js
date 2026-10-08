@@ -52,6 +52,58 @@ if (cadWindow) {
   });
 }
 
+// ---- Spinning model built into a page (home page) ----
+// Any <div class="cad-view cad-embed" data-model="..."> shows that model
+// slowly turning. It only downloads once it scrolls into view, and stops
+// drawing when scrolled away. The <img> inside shows until the model loads,
+// and stays if it can't load.
+
+document.querySelectorAll(".cad-embed").forEach(function (view) {
+  const status = view.parentElement.querySelector(".statusbar");
+  const helpText = status.innerHTML;
+  const stillMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let viewer = null;
+  let loading = false;
+  let visible = false;
+
+  async function setUp() {
+    loading = true;
+    try {
+      const newViewer = await createViewer(view);
+      Object.assign(newViewer.controls, {
+        autoRotate: !stillMotion,
+        autoRotateSpeed: 1.5,
+        enableZoom: false, // so scrolling over it still scrolls the page
+        enablePan: false,
+      });
+      // Stop spinning once the visitor grabs it
+      newViewer.controls.addEventListener("start", function () {
+        newViewer.controls.autoRotate = false;
+      });
+      await newViewer.load(view.dataset.model, status);
+      view.querySelector("img").remove();
+      status.innerHTML = helpText;
+      viewer = newViewer;
+      if (visible) viewer.start();
+    } catch (error) {
+      console.error(error);
+      status.innerHTML = helpText;
+      status.querySelector(".cad-drag-hint").remove();
+    }
+  }
+
+  new IntersectionObserver(function (entries) {
+    visible = entries[0].isIntersecting;
+    if (!viewer) {
+      if (visible && !loading) setUp();
+    } else if (visible) {
+      viewer.start();
+    } else {
+      viewer.stop();
+    }
+  }).observe(view);
+});
+
 async function createViewer(container) {
   const THREE = await import("three");
   const { OrbitControls } = await import("three/addons/controls/OrbitControls.js");
@@ -111,6 +163,8 @@ async function createViewer(container) {
   }
 
   return {
+    controls,
+
     start() {
       resize();
       renderer.setAnimationLoop(function () {

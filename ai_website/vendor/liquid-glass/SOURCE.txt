@@ -1,0 +1,3 @@
+Source: https://github.com/dashersw/liquid-glass-js
+Commit: 78cb6ccb0b9987bb60a88b14ccbd13a9e6e8ab2a
+Files copied unmodified: container.js, button.js, glass.css (MIT, see LICENSE)

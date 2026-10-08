@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jacob Lynn — Mechanical Engineering, Stanford</title>
+  <meta name="description" content="Portfolio of Jacob Lynn, mechanical engineering student at Stanford: a modular limbed-robot framework, the Europa benthic lander, and an IREC rocket payload.">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+  <link rel="stylesheet" href="vendor/liquid-glass/glass.css">
+  <link rel="stylesheet" href="css/site.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "react": "https://esm.sh/react@19.3.0",
+      "react/jsx-runtime": "https://esm.sh/react@19.3.0/jsx-runtime",
+      "react-dom": "https://esm.sh/react-dom@19.3.0?external=react",
+      "react-dom/client": "https://esm.sh/react-dom@19.3.0/client?external=react",
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+      "@react-three/fiber": "https://esm.sh/@react-three/fiber@9.8.1?external=react,react-dom,three",
+      "@shadergradient/react": "https://esm.sh/@shadergradient/react@2.4.20?external=react,react-dom,three,@react-three/fiber"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <nav class="glass-nav" aria-label="Site" data-liquid-glass data-html2canvas-ignore>
+    <ul class="glass-nav__links" data-glass-content>
+      <li><a href="index.html" aria-current="page">Index</a></li>
+      <li><a href="limbed-robot.html">Limbed robot</a></li>
+      <li><a href="europa.html">Europa</a></li>
+      <li><a href="irec.html">IREC</a></li>
+      <li><a href="#resume">Résumé</a></li>
+    </ul>
+  </nav>
+
+  <header class="band hero" data-dark>
+    <div class="band__temper" data-temper aria-hidden="true" data-html2canvas-ignore></div>
+    <div class="hero__inner">
+      <p class="hero__corner hero__corner--left label">Sheet 01 / 04 — Index</p>
+      <p class="hero__corner hero__corner--right label">Portfolio · Rev. 2026-10</p>
+
+      <div class="hero__mark" data-html2canvas-ignore>
+        <canvas data-liquid-logo="assets/logo-mask.png" role="img" aria-label="JL monogram in liquid metal"></canvas>
+        <img src="assets/logo-flat.png" alt="JL monogram" width="1000" height="1000" hidden>
+      </div>
+
+      <div class="hero__title">
+        <h1 class="hero__name">Jacob<br>Lynn</h1>
+        <p class="hero__lede">
+          Mechanical engineering at Stanford University, with a minor in computer science.
+          Interested in robotics and space, and I've always loved to create.
+        </p>
+      </div>
+
+      <dl class="hero__spec label">
+        <div><dt>Class</dt><dd>2029</dd></div>
+        <div><dt>Major</dt><dd>B.S. Mechanical Eng.</dd></div>
+        <div><dt>Minor</dt><dd>Computer Science</dd></div>
+        <div><dt>Research</dt><dd>Stanford ARMLab</dd></div>
+      </dl>
+    </div>
+  </header>
+
+  <main id="main" class="sheet">
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="section__head">
+        <span class="section__no label">01</span>
+        <h2 class="section__title" id="about-title">About</h2>
+      </div>
+      <div class="section__body">
+        <p class="about__text">
+          Hi! I'm Jacob Lynn and I am a sophomore (Class of 2029) studying mechanical engineering with a minor in
+          comp sci at Stanford University. I also do research in the Stanford ARMLab where I work on electromagnetic
+          robotic muscles for tendon-driven robot hands! I'm interested in robotics and space and I've always loved to
+          create. My dream job would someday be to work on space robotics :). This website is meant to serve as a
+          portfolio of what I have made in college so far! I hope you look around, and please reach out to me if you
+          have any questions or thoughts: <a href="mailto:jnlynn@stanford.edu">jnlynn@stanford.edu</a>
+        </p>
+
+        <dl class="facts">
+          <div><dt class="label">Education</dt><dd>Stanford University — B.S. Mechanical Engineering, minor in Computer Science. Expected 2029.</dd></div>
+          <div><dt class="label">Research</dt><dd>Stanford ARMLab (Assistive Robotics and Manipulation), April 2026 – present.</dd></div>
+          <div><dt class="label">Teams</dt><dd>Stanford Student Space Institute: Europa (co-lead) and IREC Payload.</dd></div>
+          <div><dt class="label">Engineering</dt><dd>CAD, CAM, FEA — Fusion 360, Onshape.</dd></div>
+          <div><dt class="label">Fabrication</dt><dd>CNC machining, 3D printing, laser cutting, woodworking, carbon fiber and composite layups.</dd></div>
+          <div><dt class="label">Programming</dt><dd>Python, JavaScript, Java, C, C++, ROS2.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="section__head">
+        <span class="section__no label">02</span>
+        <h2 class="section__title" id="work-title">Projects</h2>
+      </div>
+      <div class="section__body--wide">
+        <ol class="work-list">
+          <li>
+            <a class="work" href="limbed-robot.html">
+              <div class="work__img"><img src="assets/robot-dog-photo.jpg" style="--focus: 50% 78%" alt="The 3D-printed robot dog, in blue and red, standing on carpet" width="1600" height="1140"></div>
+              <div class="work__text">
+                <span class="work__no label">P-01</span>
+                <h3 class="work__title">Limbed Robot Project</h3>
+                <p class="work__summary">A generic framework for building limbed robots around one custom 5:1 QDD actuator, proven on a full-size 12-DoF robot dog.</p>
+              </div>
+              <div class="work__meta label">
+                Independent<br>Ongoing
+                <span class="work__go" aria-hidden="true">Read →</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a class="work" href="europa.html">
+              <div class="work__img"><img src="assets/europa-pool-test.jpg" alt="The Europa lander floating in a swimming pool lane, with an orange flag" width="847" height="862"></div>
+              <div class="work__text">
+                <span class="work__no label">P-02</span>
+                <h3 class="work__title">Europa — Benthic Lander</h3>
+                <p class="work__summary">A low-cost, open source lander that collects sediment, water, DNA, and video from ocean trench depths of over 9000 m.</p>
+              </div>
+              <div class="work__meta label">
+                SSI · Team co-lead<br>Sep 2025 – present
+                <span class="work__go" aria-hidden="true">Read →</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a class="work" href="irec.html">
+              <div class="work__img"><img src="assets/irec-payload.jpg" alt="The aluminum IREC payload enclosure on a workbench" width="895" height="1135"></div>
+              <div class="work__text">
+                <span class="work__no label">P-03</span>
+                <h3 class="work__title">IREC — Payload</h3>
+                <p class="work__summary">An L3 rocket payload that synthesizes crystals in microgravity for pharmaceutical testing, built to fit within a 1U CubeSat.</p>
+              </div>
+              <div class="work__meta label">
+                SSI · Payload subteam<br>Sep 2025 – present
+                <span class="work__go" aria-hidden="true">Read →</span>
+              </div>
+            </a>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="resume" aria-labelledby="resume-title">
+      <div class="section__head">
+        <span class="section__no label">03</span>
+        <h2 class="section__title" id="resume-title">Résumé</h2>
+      </div>
+      <div class="section__body--wide resume">
+        <div class="resume__sheet">
+          <img src="../resume_preview.jpg" alt="Preview of Jacob Lynn's one-page résumé" width="500" height="711">
+          <div class="resume__glass" data-liquid-glass data-tint="0.08" data-html2canvas-ignore>
+            <a class="pill-link" href="../resume.pdf" target="_blank" rel="noopener" data-glass-content>Open résumé (PDF)</a>
+          </div>
+        </div>
+        <div class="resume__notes">
+          <p>
+            One page: education, research in the ARMLab, the two Student Space Institute teams,
+            the robot dog, and skills.
+          </p>
+          <div class="resume__links label">
+            <a href="../resume.pdf" target="_blank" rel="noopener">Open PDF</a>
+            <a href="../resume.pdf" download="Jacob-Lynn-Resume.pdf">Download</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="section__head">
+        <span class="section__no label">04</span>
+        <h2 class="section__title" id="contact-title">Contact</h2>
+      </div>
+      <div class="section__body--wide">
+        <a class="contact__mail" href="mailto:jnlynn@stanford.edu">jnlynn@stanford.edu</a>
+        <div class="contact__other label">
+          <a href="https://github.com/jacobnlynn">GitHub</a>
+          <a href="../index.html">The 1990s edition of this site</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="titleblock">
+    <dl class="titleblock__grid">
+      <div class="tb-cell tb-title"><dt>Title</dt><dd>Jacob Lynn — Portfolio</dd></div>
+      <div class="tb-cell"><dt>Drawn by</dt><dd>J. Lynn</dd></div>
+      <div class="tb-cell"><dt>Department</dt><dd>Mechanical Eng., Stanford</dd></div>
+      <div class="tb-cell"><dt>Sheet</dt><dd>1 of 4</dd></div>
+      <div class="tb-cell tb-cell--notes tb-cell--row2"><dt>Notes</dt><dd>
+        Set in Archivo, Source Serif 4 and JetBrains Mono. Bands: steel temper colors, rendered with
+        <a href="https://github.com/ruucm/shadergradient">ShaderGradient</a>. JL mark: Paper's
+        <a href="https://github.com/paper-design/liquid-logo">liquid-logo</a> shader
+        (<a href="vendor/liquid-logo/LICENSE">PolyForm Shield 1.0.0</a>). Glass:
+        <a href="https://github.com/dashersw/liquid-glass-js">liquid-glass-js</a>
+        (<a href="vendor/liquid-glass/LICENSE">MIT</a>). CAD viewer:
+        <a href="https://github.com/pmndrs/react-three-fiber">react-three-fiber</a>.
+      </dd></div>
+      <div class="tb-cell"><dt>Revision</dt><dd>2026-10 · <a href="../index.html">Classic edition</a></dd></div>
+    </dl>
+    <p class="titleblock__foot label">© 2026 Jacob Lynn</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" defer></script>
+  <script src="vendor/liquid-glass/container.js" defer></script>
+  <script src="vendor/liquid-glass/button.js" defer></script>
+  <script src="js/glass.js" defer></script>
+  <script src="js/site.js" defer></script>
+  <script type="module" src="js/temper.js"></script>
+  <script type="module" src="js/liquid-logo.js"></script>
+</body>
+</html>

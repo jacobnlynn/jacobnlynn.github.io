@@ -17,6 +17,16 @@
 <body>
 <div id="page">
 
+  <!-- Window title bar; the buttons are run by personal_code.js -->
+  <div class="titlebar" id="window-title">
+    <span>Limbed Robot Project - Jacob Lynn</span>
+    <span class="window-buttons">
+      <button id="win-min" aria-label="Minimize"></button>
+      <button id="win-max" aria-label="Maximize"></button>
+      <button id="win-close" aria-label="Close">X</button>
+    </span>
+  </div>
+
   <div id="tabs">
     <a href="index.html" class="home">Jacob Lynn</a>
     <a href="limbed_robot.html" class="current">Limbed Robot Project</a>
@@ -129,7 +139,7 @@
       get a 5:1 or 9:1 ratio with a planetary gearbox. When I designed and tested the plantary gearbox, it worked
       very well, and I switched to the final project that I am working on now (generic limb robot). After a couple iterations 
       of design I landed on a 5:1 gear ratio planetary gearbox with helical gears. There is relatively low friction and almost
-      no backlash. This actuator became the core of all futher designs. It produces around 4Nm of torque at ~900 rpm (still very 
+      no backlash. This actuator became the core of all futher designs. It produces around 4Nm of torque at ~740 rpm (still very 
       fast and relatively weak). The motor powering the current actuator is a tmotor MN5212, which produces around
       .75nM of torque at a stable operating state. It runs on 6S voltage (22.4v)<br><br>
 
@@ -151,7 +161,7 @@
     </div>
     <p>
       I have fully built and mechanically tested a simple version of the robot dog so far. It stands at 
-      about 5in off the ground and weights around 13 pounds. It runs of a 10000mAh 6S battery, where it can 
+      about 6in off the ground and weights around 13 pounds. It runs of a 10000mAh 6S battery, where it can 
       confortably walk and jump for around 20 minutes. It has 12DoF in the same directions as many of the standerd
       industry robot dogs that exist. Its hip and upper leg joints are powered by 2 5:1 ratio QDD actuators and the 
       lower leg joint is powered by a belt at a 3:1 ratio. It took many iterations and 3D prints to get to the current

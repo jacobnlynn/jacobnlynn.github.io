@@ -1,0 +1,6 @@
+Source: https://github.com/paper-design/liquid-logo
+Commit: 689bb38a1e0d5a6a8baf2d34847635eefde19994
+The fragment shader in ../../js/liquid-logo.js is copied from src/app/hero/liquid-frag.ts,
+and the mask preparation follows src/hero/parse-logo-image.ts.
+Licensed under the PolyForm Shield License 1.0.0 (see LICENSE,
+https://polyformproject.org/licenses/shield/1.0.0).

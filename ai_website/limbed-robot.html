@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Limbed Robot Project — Jacob Lynn</title>
+  <meta name="description" content="A generic framework for limbed robots: a custom 5:1 QDD actuator, swappable gearboxes, and a full-size 12-DoF robot dog.">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+  <link rel="stylesheet" href="vendor/liquid-glass/glass.css">
+  <link rel="stylesheet" href="css/site.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "react": "https://esm.sh/react@19.3.0",
+      "react/jsx-runtime": "https://esm.sh/react@19.3.0/jsx-runtime",
+      "react-dom": "https://esm.sh/react-dom@19.3.0?external=react",
+      "react-dom/client": "https://esm.sh/react-dom@19.3.0/client?external=react",
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+      "@react-three/fiber": "https://esm.sh/@react-three/fiber@9.8.1?external=react,react-dom,three",
+      "@shadergradient/react": "https://esm.sh/@shadergradient/react@2.4.20?external=react,react-dom,three,@react-three/fiber"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <nav class="glass-nav" aria-label="Site" data-liquid-glass data-html2canvas-ignore>
+    <ul class="glass-nav__links" data-glass-content>
+      <li><a href="index.html">Index</a></li>
+      <li><a href="limbed-robot.html" aria-current="page">Limbed robot</a></li>
+      <li><a href="europa.html">Europa</a></li>
+      <li><a href="irec.html">IREC</a></li>
+      <li><a href="index.html#resume">Résumé</a></li>
+    </ul>
+  </nav>
+
+  <header class="band doc-band" data-dark>
+    <div class="band__temper" data-temper aria-hidden="true" data-html2canvas-ignore></div>
+    <div class="doc-band__inner">
+      <p class="doc-band__meta label">Sheet 02 / 04 — P-01 · Independent project · Ongoing</p>
+      <h1 class="doc-band__title">Limbed Robot Project</h1>
+      <p class="doc-band__lede">
+        A generic framework for making limbed robots: one motor, a family of gearboxes, and links that
+        bolt on at whatever angle and placement the robot needs.
+      </p>
+      <dl class="specs label">
+        <div><dt>Degrees of freedom</dt><dd>12</dd></div>
+        <div><dt>Weight</dt><dd>~13 lb</dd></div>
+        <div><dt>Ride height</dt><dd>~6 in</dd></div>
+        <div><dt>Battery</dt><dd>10,000 mAh 6S</dd></div>
+        <div><dt>Run time</dt><dd>~20 min</dd></div>
+        <div><dt>Actuator</dt><dd>5:1 helical QDD</dd></div>
+        <div><dt>Output</dt><dd>~4 N·m @ 740 rpm</dd></div>
+      </dl>
+    </div>
+  </header>
+
+  <div class="doc">
+    <nav class="toc label" aria-label="On this page">
+      <ol>
+        <li><a href="#overview"><span>01</span>Overview</a></li>
+        <li><a href="#initial"><span>02</span>Initial attempts</a></li>
+        <li><a href="#qdd"><span>03</span>QDD actuator</a></li>
+        <li><a href="#dog"><span>04</span>Full robot dog</a></li>
+        <li><a href="#other"><span>05</span>Other robots</a></li>
+        <li><a href="#future"><span>06</span>Future work</a></li>
+      </ol>
+    </nav>
+
+    <main id="main" class="doc__main">
+
+      <section class="doc-section" id="overview">
+        <span class="doc-section__no label">01</span>
+        <h2>Project Overview</h2>
+        <div class="prose">
+          <p>
+            The large overarching goal of this project is to make a generic framework for making limbed robots.
+            All limbed robots can be described from one link to another with 4 numbers (D-H Coordinates). I wanted to
+            make a more physical interpretation of this. Another big element of limbed robots is the torque/speed of each
+            joint. This is determined by the gear ratio and the motor. To make the project simple, I assumed there was only
+            one motor. Therefore, this project is:
+          </p>
+          <p>
+            I am trying to make a generic model of a robot link where both gearboxes and the physical link to link distance
+            is very modifiable and easy to change. I am using a single motor and have designed a set of gearboxes (3:1, 9:1, ..)
+            and am currently designing a system to make them easily swappable. In terms of the distance from link to link I have designed
+            a simple input/output mechanism that is easy to screw in, so from the output of one motor the next link can be at whatever
+            angle and placement.
+          </p>
+          <p>
+            Using this system, I have designed and built a full-sized robot dog. I have also designed (but not yet built) a series of other
+            classic limbed robots, including multiple 7DoF robot arms, a copy of the JPL RoboSimian, hexapods, and more robot dogs.
+          </p>
+        </div>
+
+        <div class="fig-row" style="--n: 5">
+          <figure class="fig fig--cad">
+            <img src="../images/limbed_robot/robot_dog.jpg" alt="CAD render of the robot dog" width="600" height="600">
+            <figcaption><span class="fig-no">1.1</span>Robot Dog</figcaption>
+          </figure>
+          <figure class="fig fig--cad">
+            <img src="../images/limbed_robot/five_bar_dog.jpg" alt="CAD render of the 5-bar robot dog" width="600" height="600">
+            <figcaption><span class="fig-no">1.2</span>5-Bar Robot Dog</figcaption>
+          </figure>
+          <figure class="fig fig--cad">
+            <img src="../images/limbed_robot/arm_7dof_90.jpg" alt="CAD render of the 7DoF robot arm with 90 degree joints" width="600" height="600">
+            <figcaption><span class="fig-no">1.3</span>7DoF Robot Arm (90 degree joints)</figcaption>
+          </figure>
+          <figure class="fig fig--cad">
+            <img src="../images/limbed_robot/arm_7dof_45.jpg" alt="CAD render of the 7DoF robot arm with 45 degree joints" width="600" height="600">
+            <figcaption><span class="fig-no">1.4</span>7DoF Robot Arm (45 degree joints)</figcaption>
+          </figure>
+          <figure class="fig fig--cad">
+            <img src="../images/limbed_robot/robosimian.jpg" alt="CAD render of the RoboSimian mimic" width="600" height="600">
+            <figcaption><span class="fig-no">1.5</span>RoboSimian Mimic</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="doc-section" id="initial">
+        <span class="doc-section__no label">02</span>
+        <h2>Initial Attempts</h2>
+        <div class="split">
+          <div class="prose">
+            <p>
+              I've spent almost a year on this project so far (and there is still lots to go!). The project started out
+              as an attempt to build a walking and climbing robot (with little spikes I designed). I wanted to make a sort
+              of "crab robot", that walked sideways and could also climb trees/porous objects like a crab did. I got as far as
+              making a full CAD model of the crab (pictured to the right). However, the CAD had many issues, with the main ones I
+              could foresee was the spiked foot being backdrivable and general problems with chain tension. I decided I should CAD
+              another model before moving onto prototyping.
+            </p>
+            <p>
+              It was because of designing that version that I realized that a lot of the mechanical design behind robotics can be
+              generalized. I only wanted to add a simple hook mechanism at the bottom of an already existing robot dog
+              design. I then started to work on a generalized robot dog. At that point in time, I only was trying to make a system
+              that people can edit the length of and have a dog of varying lengths. It was then that I designed the next version of
+              the robot dog. I started to physically prototype too, 3D printing all of my versions and testing them. The major design
+              changes from this version was moving to a belt driven mechanism and also have a not-backdrivable worm gear for the
+              climbing mechanism.
+            </p>
+          </div>
+          <figure class="fig fig--cad">
+            <img src="../images/limbed_robot/crab_dog.jpg" alt="CAD model of the crab robot: an aluminum-extrusion frame with chain-driven legs and spiked feet" width="840" height="600">
+            <figcaption><span class="fig-no">2.1</span>Crab dog</figcaption>
+          </figure>
+        </div>
+
+        <div class="fig-row" style="--n: 4">
+          <figure class="fig">
+            <img src="../images/limbed_robot/short_leg.jpg" alt="Short white leg prototype with a drone motor and belt drive" width="300" height="300">
+            <figcaption><span class="fig-no">2.2</span>Short leg</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="../images/limbed_robot/leg_comparison.jpg" alt="Two black leg prototypes side by side on a workbench" width="300" height="300">
+            <figcaption><span class="fig-no">2.3</span>Comparing leg designs</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="../images/limbed_robot/capstan_prototype.jpg" alt="Capstan drive prototype with white cord wound on a spool" width="300" height="300">
+            <figcaption><span class="fig-no">2.4</span>Capstan prototyping</figcaption>
+          </figure>
+          <figure class="fig fig--cad">
+            <img src="../images/limbed_robot/leg_prototype.jpg" alt="Colored CAD render of a leg prototype" width="300" height="300">
+            <figcaption><span class="fig-no">2.5</span>Leg prototyping</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="doc-section" id="qdd">
+        <span class="doc-section__no label">03</span>
+        <h2>QDD Actuator</h2>
+        <div class="prose">
+          <p>
+            I realized I needed a QDD (quasi-direct drive) actuator because of the gear ratios that I needed.
+            Because I was using drone motors, I had a very low torque and a very high rpm (which is the opposite of
+            what I needed for a robot dog). I could only get a max of 3:1 ratio with a belt drive, while I could easily
+            get a 5:1 or 9:1 ratio with a planetary gearbox. When I designed and tested the planetary gearbox, it worked
+            very well, and I switched to the final project that I am working on now (generic limb robot). After a couple iterations
+            of design I landed on a 5:1 gear ratio planetary gearbox with helical gears. There is relatively low friction and almost
+            no backlash. This actuator became the core of all further designs. It produces around 4Nm of torque at ~740 rpm (still very
+            fast and relatively weak). The motor powering the current actuator is a T-Motor MN5212, which produces around
+            0.75Nm of torque at a stable operating state. It runs on 6S voltage (22.4v).
+          </p>
+          <p>
+            The actuator is the main place of improvement of my design. Because I was limited by 3D printed gears
+            I was limited to what module I could print the gears, and therefore the ratio I could get. I am planning
+            on trying to reduce the module as much as I can go (I have done a 9:1 ratio already which has worked), and
+            also look into different types of gearboxes (cycloidal, harmonic, etc).
+          </p>
+        </div>
+
+        <figure class="fig fig--cad fig-wide">
+          <img src="../images/limbed_robot/qdd_exploded.jpg" alt="Exploded CAD view of the actuator: output carrier, bearings, ring gear, helical planets, sun gear, motor and housing" width="1600" height="688">
+          <figcaption><span class="fig-no">3.1</span>Exploded view of actuator</figcaption>
+        </figure>
+
+        <dl class="facts">
+          <div><dt class="label">Motor</dt><dd>T-Motor MN5212, ~0.75 N·m at a stable operating state</dd></div>
+          <div><dt class="label">Gearbox</dt><dd>5:1 planetary, helical gears (9:1 also built)</dd></div>
+          <div><dt class="label">Output</dt><dd>~4 N·m at ~740 rpm</dd></div>
+          <div><dt class="label">Supply</dt><dd>6S (22.4 V)</dd></div>
+        </dl>
+      </section>
+
+      <section class="doc-section" id="dog">
+        <span class="doc-section__no label">04</span>
+        <h2>Full Robot Dog</h2>
+        <div class="split">
+          <div class="prose">
+            <p>
+              I have fully built and mechanically tested a simple version of the robot dog so far. It stands at
+              about 6in off the ground and weighs around 13 pounds. It runs off a 10000mAh 6S battery, where it can
+              comfortably walk and jump for around 20 minutes. It has 12DoF in the same directions as many of the standard
+              industry robot dogs that exist. Its hip and upper leg joints are powered by 2 5:1 ratio QDD actuators and the
+              lower leg joint is powered by a belt at a 3:1 ratio. It took many iterations and 3D prints to get to the current
+              state. It is mostly 3D printed, for reproducibility and cost.
+            </p>
+          </div>
+          <figure class="fig">
+            <img src="../images/limbed_robot/full_robot_dog.jpg" alt="The built robot dog in blue and red PLA, with loose motor wires on top" width="840" height="598">
+            <figcaption><span class="fig-no">4.1</span>Full Robot Dog (ignore wire management)</figcaption>
+          </figure>
+        </div>
+
+        <h3>Electronics</h3>
+        <div class="prose">
+          <p>
+            The dog is powered by a Teensy 4.1 microcontroller that runs a micro-ROS node which communicates
+            with the computer. Each individual motor is powered by a moteus r4.11 motor controller. These also serve
+            as the encoders for the motor, and are all connected together with a FD-CAN protocol. These controllers
+            are powered directly by a 10,000mAh 6S battery which feeds into two PDBs which split the current into
+            all of the 12 controllers.
+          </p>
+        </div>
+
+        <h3>Software</h3>
+        <div class="prose">
+          <p>
+            I am currently still working on the software, but it will be run with a ROS2 environment. Each motor controller
+            will be a node which will then feed into a node for each leg (hip + upper_joint + lower_joint). Each leg node will
+            calculate the position of the tip of the leg using the jacobian and will account for any errors with basic PID
+            control. Some basic trotting/crawling/walking behaviors will then be designed.
+          </p>
+        </div>
+
+        <h3>Interactive CAD</h3>
+        <div class="prose">
+          <p>Load the model below. Drag to rotate it, right-drag to move it, and scroll to zoom.</p>
+        </div>
+
+        <div class="bench" data-bench>
+          <div class="bench__bar label">
+            <span class="bench__file">robot_dog.glb</span>
+            <span class="bench__status" aria-live="polite"></span>
+          </div>
+          <div class="bench__tabs" role="tablist" hidden>
+            <button type="button" role="tab" class="bench__tab" data-model="../models/robot_dog.glb" data-size="9.5" data-poster="../images/limbed_robot/robot_dog.jpg">Robot Dog</button>
+          </div>
+          <div class="bench__stage">
+            <img class="bench__poster" src="../images/limbed_robot/robot_dog.jpg" alt="Robot Dog (CAD render)">
+            <button type="button" class="bench__load">Load 3D model · 9.5 MB</button>
+            <span class="bench__hint label">Drag · rotate &nbsp; Right-drag · move &nbsp; Scroll · zoom</span>
+          </div>
+        </div>
+        <p class="bench-caption label">Fig. 4.2 — Robot dog, full assembly</p>
+      </section>
+
+      <section class="doc-section" id="other">
+        <span class="doc-section__no label">05</span>
+        <h2>Other Limbed Robots</h2>
+        <div class="prose">
+          <p>
+            Using the generic QDD actuator, I designed many more limbed robots to demonstrate the project's potential.
+            While many of the gearboxes need to be designed, I was able to design almost any type of limbed robot, from
+            various models of robot arms to more obscure old robots (JPL's RoboSimian). Each of the different CADs shown need
+            various gear ratios, from the 5-Bar robot dog only needed the current 5:1 to the robot arms which need upwards of
+            50:1 ratios in them.
+          </p>
+        </div>
+
+        <div class="bench" data-bench>
+          <div class="bench__bar label">
+            <span class="bench__file">5_Bar_Dog.glb</span>
+            <span class="bench__status" aria-live="polite"></span>
+          </div>
+          <div class="bench__tabs" role="tablist" aria-label="Models">
+            <button type="button" role="tab" class="bench__tab" aria-selected="true" data-model="../models/5_Bar_Dog.glb" data-size="8.1" data-poster="../images/limbed_robot/five_bar_dog.jpg">5-Bar Robot Dog</button>
+            <button type="button" role="tab" class="bench__tab" aria-selected="false" data-model="../models/7DOF_robot_arm_90_degrees.glb" data-size="4.7" data-poster="../images/limbed_robot/arm_7dof_90.jpg">7DoF Arm · 90°</button>
+            <button type="button" role="tab" class="bench__tab" aria-selected="false" data-model="../models/7DOF_robot_arm_45_degrees.glb" data-size="4.0" data-poster="../images/limbed_robot/arm_7dof_45.jpg">7DoF Arm · 45°</button>
+            <button type="button" role="tab" class="bench__tab" aria-selected="false" data-model="../models/RoboSimianMimic.glb" data-size="18.5" data-poster="../images/limbed_robot/robosimian.jpg">RoboSimian Mimic</button>
+          </div>
+          <div class="bench__stage">
+            <img class="bench__poster" src="../images/limbed_robot/five_bar_dog.jpg" alt="5-Bar Robot Dog (CAD render)">
+            <button type="button" class="bench__load">Load 3D model · 8.1 MB</button>
+            <span class="bench__hint label">Drag · rotate &nbsp; Right-drag · move &nbsp; Scroll · zoom</span>
+          </div>
+        </div>
+        <p class="bench-caption label">Fig. 5.1 — Designed, not yet built</p>
+      </section>
+
+      <section class="doc-section" id="future">
+        <span class="doc-section__no label">06</span>
+        <h2>Future Work</h2>
+        <div class="prose">
+          <p>
+            There is a lot of work to do in the future. The first thing
+            I need to do is design more gearboxes along the same form factor. Then I hope to make the gearbox
+            systems easily swappable. I also hope to improve the link between joints to be more diverse or more
+            easily snapped on (versus screwed on). I will try to occasionally update this page according to my current
+            progress, but my hope is that someday this can be an open source project! I hope this can help people build
+            more types of robots easier, and not make them have to rediscover the same stuff. I hope these robots and this
+            framework can act as a jumping off point for other people to build more creative and more diverse robots :)
+          </p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="titleblock">
+    <dl class="titleblock__grid">
+      <div class="tb-cell tb-title"><dt>Title</dt><dd>Limbed Robot Project</dd></div>
+      <div class="tb-cell"><dt>Drawn by</dt><dd>J. Lynn</dd></div>
+      <div class="tb-cell"><dt>Next sheet</dt><dd><a href="europa.html">Europa — Benthic Lander</a></dd></div>
+      <div class="tb-cell"><dt>Sheet</dt><dd>2 of 4</dd></div>
+      <div class="tb-cell tb-cell--notes tb-cell--row2"><dt>Notes</dt><dd>
+        Models are Fusion 360 exports, shown with
+        <a href="https://github.com/pmndrs/react-three-fiber">react-three-fiber</a>; they download only when loaded.
+        Band rendered with <a href="https://github.com/ruucm/shadergradient">ShaderGradient</a>.
+      </dd></div>
+      <div class="tb-cell"><dt>Contact</dt><dd><a href="mailto:jnlynn@stanford.edu">jnlynn@stanford.edu</a></dd></div>
+    </dl>
+    <p class="titleblock__foot label">© 2026 Jacob Lynn</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" defer></script>
+  <script src="vendor/liquid-glass/container.js" defer></script>
+  <script src="vendor/liquid-glass/button.js" defer></script>
+  <script src="js/glass.js" defer></script>
+  <script src="js/site.js" defer></script>
+  <script type="module" src="js/temper.js"></script>
+  <script type="module" src="js/bench.js"></script>
+</body>
+</html>

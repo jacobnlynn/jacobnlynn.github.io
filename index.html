@@ -4,9 +4,28 @@
   <meta charset="utf-8">
   <title>Jacob Lynn</title>
   <link rel="stylesheet" href="format.css">
+  <!-- Where the 3D viewer downloads three.js from -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
 </head>
 <body>
 <div id="page">
+
+  <!-- Window title bar; the buttons are run by personal_code.js -->
+  <div class="titlebar" id="window-title">
+    <span>Jacob Lynn - Portfolio</span>
+    <span class="window-buttons">
+      <button id="win-min" aria-label="Minimize"></button>
+      <button id="win-max" aria-label="Maximize"></button>
+      <button id="win-close" aria-label="Close">X</button>
+    </span>
+  </div>
 
   <div id="tabs">
     <a href="index.html" class="home current">Jacob Lynn</a>
@@ -29,10 +48,48 @@
 
     <h2>Resume</h2>
     <hr>
-    <a href="resume.pdf" id="resume-link" class="thumb">
-      <img src="resume_preview.jpg" alt="View my resume">
-      <span>resume.pdf</span>
-    </a>
+    <!-- Resume, live robot dog and quick facts side by side; wraps on narrow screens -->
+    <div class="window-row">
+      <a href="resume.pdf" id="resume-link" class="thumb">
+        <img src="resume_preview.jpg" alt="View my resume">
+        <span>resume.pdf</span>
+      </a>
+      <!-- Live spinning model, run by cad_viewer.js; the picture shows until it loads -->
+      <div class="window cad-embed-window">
+        <div class="titlebar"><span>robot_dog.glb - 3D Viewer</span></div>
+        <div class="cad-view cad-embed" data-model="models/robot_dog.glb">
+          <img src="images/limbed_robot/robot_dog.jpg" alt="Robot dog CAD model">
+        </div>
+        <div class="statusbar">
+          12-DoF robot dog
+          <span class="cad-drag-hint">&nbsp;|&nbsp; Drag to rotate</span>
+          &nbsp;|&nbsp; <a href="limbed_robot.html#dog">Read about it</a>
+        </div>
+      </div>
+      <!-- Quick facts, styled like the Windows 95 System Properties box -->
+      <div class="window sysprops">
+        <div class="titlebar"><span>System Properties</span></div>
+        <div class="window-body">
+          <dl>
+            <dt>System:</dt>
+            <dd>Jacob Lynn<br>Stanford University, Class of 2029</dd>
+            <dt>Major:</dt>
+            <dd>Mechanical Engineering</dd>
+            <dt>Minor:</dt>
+            <dd>Computer Science</dd>
+            <dt>Research:</dt>
+            <dd>Stanford ARMLab<br>Electromagnetic muscles for tendon-driven robot hands</dd>
+            <dt>Interests:</dt>
+            <dd>Robotics, space</dd>
+            <dt>Dream job:</dt>
+            <dd>Space robotics</dd>
+          </dl>
+          <div class="window-actions">
+            <a href="mailto:jnlynn@stanford.edu" class="button">Contact...</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <h2>Projects</h2>
     <hr>
@@ -70,5 +127,6 @@
 
 </div>
 <script src="personal_code.js"></script>
+<script type="module" src="cad_viewer.js"></script>
 </body>
 </html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Temper poster renderer</title>
+  <!--
+    Renders one still frame of the temper gradient (same settings as js/temper.js)
+    to save as assets/temper-poster.jpg. Open it through a local server at
+    1600x1000 and take a screenshot, e.g. with headless Chrome:
+      chrome --headless=new --window-size=1700,1200 --screenshot=poster.png (then crop to 1600x1000) http://localhost:8000/ai_website/tools/poster.html
+  -->
+  <style>html, body { margin: 0; height: 100%; background: #1c2a46; } #g { position: absolute; left: 0; top: 0; width: 1600px; height: 1000px; }</style>
+  <script type="importmap">
+  {
+    "imports": {
+      "react": "https://esm.sh/react@19.3.0",
+      "react/jsx-runtime": "https://esm.sh/react@19.3.0/jsx-runtime",
+      "react-dom": "https://esm.sh/react-dom@19.3.0?external=react",
+      "react-dom/client": "https://esm.sh/react-dom@19.3.0/client?external=react",
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+      "@react-three/fiber": "https://esm.sh/@react-three/fiber@9.8.1?external=react,react-dom,three",
+      "@shadergradient/react": "https://esm.sh/@shadergradient/react@2.4.20?external=react,react-dom,three,@react-three/fiber"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="g" data-temper="poster"></div>
+  <script type="module" src="../js/temper.js"></script>
+</body>
+</html>
