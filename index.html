@@ -54,16 +54,34 @@
         <img src="resume_preview.jpg" alt="View my resume">
         <span>resume.pdf</span>
       </a>
-      <!-- Live spinning model, run by cad_viewer.js; the picture shows until it loads -->
+      <!-- Live spinning model, run by cad_viewer.js; the picture shows until it loads.
+           A random tab is picked on each visit, weighted by data-weight. -->
       <div class="window cad-embed-window">
-        <div class="titlebar"><span>robot_dog.glb - 3D Viewer</span></div>
+        <div class="titlebar"><span class="cad-title">robot_dog.glb - 3D Viewer</span></div>
         <div class="cad-view cad-embed" data-model="models/robot_dog.glb">
           <img src="images/limbed_robot/robot_dog.jpg" alt="Robot dog CAD model">
         </div>
+        <div class="cad-tabs" role="tablist" aria-label="Choose a model">
+          <button type="button" role="tab" aria-selected="true" data-weight="0.4"
+            data-model="models/robot_dog.glb" data-poster="images/limbed_robot/robot_dog.jpg"
+            data-caption="12-DoF robot dog" data-link="limbed_robot.html#dog">Robot Dog</button>
+          <button type="button" role="tab" aria-selected="false" data-weight="0.15"
+            data-model="models/5_Bar_Dog.glb" data-poster="images/limbed_robot/five_bar_dog.jpg"
+            data-caption="5-bar robot dog" data-link="limbed_robot.html#other">5-Bar Dog</button>
+          <button type="button" role="tab" aria-selected="false" data-weight="0.15"
+            data-model="models/7DOF_robot_arm_90_degrees.glb" data-poster="images/limbed_robot/arm_7dof_90.jpg"
+            data-caption="7-DoF arm, 90&deg; joints" data-link="limbed_robot.html#other">Arm 90&deg;</button>
+          <button type="button" role="tab" aria-selected="false" data-weight="0.15"
+            data-model="models/7DOF_robot_arm_45_degrees.glb" data-poster="images/limbed_robot/arm_7dof_45.jpg"
+            data-caption="7-DoF arm, 45&deg; joints" data-link="limbed_robot.html#other">Arm 45&deg;</button>
+          <button type="button" role="tab" aria-selected="false" data-weight="0.15"
+            data-model="models/RoboSimianMimic.glb" data-poster="images/limbed_robot/robosimian.jpg"
+            data-caption="RoboSimian mimic" data-link="limbed_robot.html#other">RoboSimian</button>
+        </div>
         <div class="statusbar">
-          12-DoF robot dog
+          <span class="cad-caption">12-DoF robot dog</span>
           <span class="cad-drag-hint">&nbsp;|&nbsp; Drag to rotate</span>
-          &nbsp;|&nbsp; <a href="limbed_robot.html#dog">Read about it</a>
+          &nbsp;|&nbsp; <a class="cad-link" href="limbed_robot.html#dog">Read about it</a>
         </div>
       </div>
       <!-- Quick facts, styled like the Windows 95 System Properties box -->

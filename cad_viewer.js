@@ -57,14 +57,79 @@ if (cadWindow) {
 // slowly turning. It only downloads once it scrolls into view, and stops
 // drawing when scrolled away. The <img> inside shows until the model loads,
 // and stays if it can't load.
+// If the window has a .cad-tabs row of <button data-model="..."> tabs, one is
+// picked at random on page load (weighted by data-weight) and clicking a tab
+// switches models.
 
 document.querySelectorAll(".cad-embed").forEach(function (view) {
-  const status = view.parentElement.querySelector(".statusbar");
-  const helpText = status.innerHTML;
+  const win = view.parentElement;
+  const status = win.querySelector(".statusbar");
+  const tabs = Array.from(win.querySelectorAll(".cad-tabs [data-model]"));
   const stillMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let helpText = status.innerHTML;
   let viewer = null;
   let loading = false;
   let visible = false;
+  let switching = false;
+
+  // Mark a tab as chosen and update the title, picture and status bar to match
+  function selectTab(tab) {
+    tabs.forEach(function (other) {
+      other.setAttribute("aria-selected", other === tab ? "true" : "false");
+    });
+    view.dataset.model = tab.dataset.model;
+    win.querySelector(".cad-title").textContent = tab.dataset.model.split("/").pop() + " - 3D Viewer";
+    const img = view.querySelector("img");
+    if (img) {
+      img.src = tab.dataset.poster;
+      img.alt = tab.textContent + " CAD model";
+    }
+    status.innerHTML = helpText;
+    status.querySelector(".cad-caption").innerHTML = tab.dataset.caption;
+    status.querySelector(".cad-link").href = tab.dataset.link;
+    helpText = status.innerHTML;
+  }
+
+  // Load whichever model is selected, catching up if the visitor clicked
+  // another tab while one was still downloading
+  async function showSelected() {
+    if (switching) return;
+    switching = true;
+    try {
+      let url;
+      do {
+        url = view.dataset.model;
+        await viewer.load(url, status);
+      } while (url !== view.dataset.model);
+      status.innerHTML = helpText;
+    } catch (error) {
+      console.error(error);
+      status.textContent = "Could not load " + view.dataset.model;
+    }
+    switching = false;
+  }
+
+  if (tabs.length) {
+    // Weighted random pick
+    const total = tabs.reduce(function (sum, tab) { return sum + Number(tab.dataset.weight || 1); }, 0);
+    let roll = Math.random() * total;
+    const picked = tabs.find(function (tab) {
+      roll -= Number(tab.dataset.weight || 1);
+      return roll < 0;
+    }) || tabs[0];
+    selectTab(picked);
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        if (tab.getAttribute("aria-selected") === "true") return;
+        selectTab(tab);
+        if (viewer) {
+          viewer.controls.autoRotate = !stillMotion;
+          showSelected();
+        }
+      });
+    });
+  }
 
   async function setUp() {
     loading = true;
@@ -80,15 +145,19 @@ document.querySelectorAll(".cad-embed").forEach(function (view) {
       newViewer.controls.addEventListener("start", function () {
         newViewer.controls.autoRotate = false;
       });
-      await newViewer.load(view.dataset.model, status);
+      const url = view.dataset.model;
+      await newViewer.load(url, status);
       view.querySelector("img").remove();
       status.innerHTML = helpText;
       viewer = newViewer;
       if (visible) viewer.start();
+      // A different tab was clicked while the first model downloaded
+      if (url !== view.dataset.model) showSelected();
     } catch (error) {
       console.error(error);
       status.innerHTML = helpText;
       status.querySelector(".cad-drag-hint").remove();
+      helpText = status.innerHTML;
     }
   }
 
