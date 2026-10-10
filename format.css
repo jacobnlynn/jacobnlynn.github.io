@@ -10,14 +10,14 @@ body {
   font-family: "Times New Roman", Times, serif;
   font-size: 16px;
   margin: 0;
-  padding: 10px 10px 40px 10px; /* bottom leaves room for the taskbar */
+  padding: 10px 10px 52px 10px; /* bottom leaves room for the taskbar */
 }
 
 /* Raised gray box filling nearly the whole window */
 #page {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 50px);
+  min-height: calc(100vh - 62px);
   padding: 2px 12px 12px 12px;
   background-color: #c0c0c0;
   border: 2px solid;
@@ -316,19 +316,19 @@ dialog::backdrop {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2px 2px 2px 6px;
+  padding: 3px 3px 3px 6px;
   background-color: #000080;
   color: #ffffff;
   font-weight: bold;
 }
 
 .titlebar button {
-  width: 22px;
-  height: 20px;
+  width: 31px;
+  height: 28px;
   padding: 0;
   font-family: Arial, sans-serif;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 17px;
   background-color: #c0c0c0;
   color: #000000;
   border: 2px solid;
@@ -436,6 +436,69 @@ dialog iframe {
   border-color: #808080 #ffffff #ffffff #808080;
 }
 
+/* ---- Photo viewer (personal_code.js) ---- */
+
+/* Photos that open the viewer when clicked */
+img.enlargeable {
+  cursor: zoom-in;
+}
+
+#photo-window {
+  width: min(90vw, 900px);
+  height: 90vh;
+}
+
+/* Sunken white area; the photo is shown as big as fits, never stretched */
+.photo-view {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  padding: 6px;
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: #404040 #ffffff #ffffff #404040;
+}
+
+.photo-view img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.photo-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.photo-caption {
+  flex: 1;
+  text-align: center;
+}
+
+.photo-controls button {
+  padding: 4px 12px;
+  font-family: inherit;
+  font-size: 15px;
+  color: #000000;
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+  cursor: pointer;
+}
+
+.photo-controls button:active {
+  border-color: #404040 #ffffff #ffffff #404040;
+}
+
+.photo-controls button:disabled {
+  color: #808080;
+  cursor: default;
+}
+
 /* ---- Main window title bar (personal_code.js) ---- */
 
 #page > .titlebar {
@@ -455,16 +518,16 @@ body.moved {
 
 /* Close button sits a little apart from the other two */
 #win-close {
-  margin-left: 2px;
+  margin-left: 3px;
 }
 
 /* Minimize: a short bar along the bottom */
 #win-min::before {
   content: "";
   display: block;
-  width: 7px;
-  height: 2px;
-  margin: 8px auto 0 auto;
+  width: 10px;
+  height: 3px;
+  margin: 12px auto 0 auto;
   background-color: #000000;
 }
 
@@ -472,28 +535,28 @@ body.moved {
 #win-max::before {
   content: "";
   display: block;
-  width: 10px;
-  height: 9px;
+  width: 14px;
+  height: 12px;
   margin: 0 auto;
   border: 1px solid #000000;
-  border-top-width: 2px;
+  border-top-width: 3px;
 }
 
 /* Restore: two overlapping boxes */
 body.maximized #win-max::before {
-  width: 7px;
-  height: 6px;
-  margin: 0 auto 0 4px;
-  box-shadow: 3px -3px 0 -1px #c0c0c0, 3px -3px 0 0 #000000;
-  transform: translateY(2px);
+  width: 10px;
+  height: 8px;
+  margin: 0 auto 0 5px;
+  box-shadow: 4px -4px 0 -1px #c0c0c0, 4px -4px 0 0 #000000;
+  transform: translateY(3px);
 }
 
 body.maximized {
-  padding: 0 0 30px 0;
+  padding: 0 0 42px 0;
 }
 
 body.maximized #page {
-  min-height: calc(100vh - 30px);
+  min-height: calc(100vh - 42px);
 }
 
 body.minimized #page {
@@ -517,16 +580,16 @@ body.closed #task-window {
   display: flex;
   align-items: center;
   gap: 4px;
-  height: 30px;
-  padding: 2px;
+  height: 42px;
+  padding: 3px;
   background-color: #c0c0c0;
   border-top: 2px solid #ffffff;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 #taskbar button {
-  height: 24px;
-  padding: 0 6px;
+  height: 34px;
+  padding: 0 9px;
   font-family: inherit;
   font-size: inherit;
   color: #000000;
@@ -544,14 +607,49 @@ body.closed #task-window {
 #start-button {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   font-weight: bold;
+}
+
+/* Quick-launch icons next to Start, one per project */
+#quick-launch {
+  display: flex;
+  gap: 2px;
+  padding: 0 6px 0 4px;
+  border-right: 2px groove #ffffff;
+}
+
+#quick-launch a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  font-weight: bold;
+  color: #000000;
+  text-decoration: none;
+  border: 2px solid transparent;
+}
+
+#quick-launch a:hover {
+  border-color: #ffffff #404040 #404040 #ffffff;
+}
+
+#quick-launch a:active,
+#quick-launch a.pressed {
+  border-color: #404040 #ffffff #ffffff #404040;
+}
+
+#quick-launch img {
+  width: 24px;
+  height: 24px;
+  image-rendering: pixelated;
 }
 
 /* Four-color flag */
 .start-logo {
-  width: 14px;
-  height: 12px;
+  width: 20px;
+  height: 17px;
   background:
     linear-gradient(#ff0000, #ff0000) top left / 50% 50% no-repeat,
     linear-gradient(#00a000, #00a000) top right / 50% 50% no-repeat,
@@ -562,7 +660,7 @@ body.closed #task-window {
 
 /* This page's window; cuts off long titles with "..." */
 #task-window {
-  flex: 0 1 220px;
+  flex: 0 1 280px;
   min-width: 0;
   overflow: hidden;
   white-space: nowrap;
@@ -576,7 +674,7 @@ body.closed #task-window {
 
 #tray-clock {
   margin-left: auto;
-  padding: 2px 10px;
+  padding: 5px 12px;
   border: 1px solid;
   border-color: #808080 #ffffff #ffffff #808080;
 }
@@ -584,7 +682,7 @@ body.closed #task-window {
 #start-menu {
   position: absolute;
   left: 2px;
-  bottom: 28px;
+  bottom: 40px;
   display: flex;
   background-color: #c0c0c0;
   border: 2px solid;

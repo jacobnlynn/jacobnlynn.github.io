@@ -1,4 +1,4 @@
-// Site scripts: resume pop-up, window buttons, taskbar (CAD viewers are in cad_viewer.js)
+// Site scripts: resume pop-up, photo viewer, window buttons, taskbar (CAD viewers are in cad_viewer.js)
 
 // ---- Resume pop-up ----
 // Opens resume.pdf in a window over the page. On small screens (phones
@@ -24,6 +24,78 @@ if (resumeLink && resumeWindow) {
   // Clicking the dark area outside the window closes it
   resumeWindow.addEventListener("click", function (event) {
     if (event.target === resumeWindow) resumeWindow.close();
+  });
+}
+
+// ---- Photo viewer ----
+// Clicking a photo on a project page opens it bigger in a pop-up window,
+// with Back / Next buttons (and the arrow keys) to step through the other
+// photos on the page.
+
+const pagePhotos = Array.from(document.querySelectorAll("#panel figure img"));
+
+if (pagePhotos.length) {
+  const viewer = document.createElement("dialog");
+  viewer.id = "photo-window";
+  viewer.innerHTML =
+    '<div class="titlebar">' +
+      '<span class="photo-name"></span>' +
+      '<button class="close" aria-label="Close">X</button>' +
+    '</div>' +
+    '<div class="photo-view"><img alt=""></div>' +
+    '<div class="photo-controls">' +
+      '<button class="photo-prev">&#9664; Back</button>' +
+      '<span class="photo-caption"></span>' +
+      '<button class="photo-next">Next &#9654;</button>' +
+    '</div>' +
+    '<div class="statusbar"></div>';
+  document.body.appendChild(viewer);
+
+  const image = viewer.querySelector(".photo-view img");
+  const nameText = viewer.querySelector(".photo-name");
+  const captionText = viewer.querySelector(".photo-caption");
+  const statusText = viewer.querySelector(".statusbar");
+  const prevButton = viewer.querySelector(".photo-prev");
+  const nextButton = viewer.querySelector(".photo-next");
+
+  const photos = pagePhotos.map(function (img) {
+    const caption = img.closest("figure").querySelector("figcaption");
+    return { src: img.getAttribute("src"), alt: img.alt, caption: caption ? caption.textContent : "" };
+  });
+  let current = 0;
+
+  function show(index) {
+    current = (index + photos.length) % photos.length;
+    const photo = photos[current];
+    image.src = photo.src;
+    image.alt = photo.alt;
+    nameText.textContent = photo.src.split("/").pop();
+    captionText.textContent = photo.caption;
+    statusText.textContent = "Photo " + (current + 1) + " of " + photos.length;
+    prevButton.disabled = nextButton.disabled = photos.length < 2;
+  }
+
+  prevButton.addEventListener("click", function () { show(current - 1); });
+  nextButton.addEventListener("click", function () { show(current + 1); });
+  viewer.querySelector(".close").addEventListener("click", function () { viewer.close(); });
+
+  // Clicking the dark area outside the window closes it
+  viewer.addEventListener("click", function (event) {
+    if (event.target === viewer) viewer.close();
+  });
+
+  viewer.addEventListener("keydown", function (event) {
+    if (event.key === "ArrowLeft") show(current - 1);
+    if (event.key === "ArrowRight") show(current + 1);
+  });
+
+  pagePhotos.forEach(function (img, index) {
+    img.classList.add("enlargeable");
+    img.title = "Click to enlarge";
+    img.addEventListener("click", function () {
+      show(index);
+      viewer.showModal();
+    });
   });
 }
 
@@ -123,6 +195,7 @@ if (page) {
   taskbar.id = "taskbar";
   taskbar.innerHTML =
     '<button id="start-button" aria-haspopup="menu" aria-expanded="false"><span class="start-logo"></span>Start</button>' +
+    '<span id="quick-launch"></span>' +
     '<div id="start-menu" role="menu" hidden>' +
       '<div class="start-banner">Jacob<b>OS</b> 95</div>' +
       '<div class="start-items"></div>' +
@@ -171,6 +244,28 @@ if (page) {
     if (event.key === "Escape") setMenuOpen(false);
   });
 
+  // Quick-launch icons, one per project tab: images/icons/<page name>.svg
+  // (e.g. limbed_robot.html uses images/icons/limbed_robot.svg). A project
+  // with no icon file gets a plain button with its first letter.
+  const quickLaunch = document.getElementById("quick-launch");
+  const thisPage = location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll("#tabs a:not(.home)").forEach(function (tab) {
+    const href = tab.getAttribute("href");
+    const link = document.createElement("a");
+    link.href = href;
+    link.title = tab.textContent;
+    link.setAttribute("aria-label", tab.textContent);
+    if (href === thisPage) link.classList.add("pressed");
+    const icon = document.createElement("img");
+    icon.src = "images/icons/" + href.replace(/\.html$/, "") + ".svg";
+    icon.alt = "";
+    icon.addEventListener("error", function () {
+      link.textContent = tab.textContent.charAt(0);
+    });
+    link.appendChild(icon);
+    quickLaunch.appendChild(link);
+  });
+
   // This page's window: click to minimize or bring it back
   const taskButton = document.getElementById("task-window");
   taskButton.textContent = windowTitle ? windowTitle.querySelector("span").textContent : document.title;
@@ -185,3 +280,4 @@ if (page) {
   updateClock();
   setInterval(updateClock, 10000);
 }
+
