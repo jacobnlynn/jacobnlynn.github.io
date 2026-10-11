@@ -552,11 +552,11 @@ body.maximized #win-max::before {
 }
 
 body.maximized {
-  padding: 0 0 42px 0;
+  padding: 0 0 56px 0;
 }
 
 body.maximized #page {
-  min-height: calc(100vh - 42px);
+  min-height: calc(100vh - 56px);
 }
 
 body.minimized #page {
@@ -580,16 +580,16 @@ body.closed #task-window {
   display: flex;
   align-items: center;
   gap: 4px;
-  height: 42px;
-  padding: 3px;
+  height: 56px;
+  padding: 4px;
   background-color: #c0c0c0;
   border-top: 2px solid #ffffff;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 #taskbar button {
-  height: 34px;
-  padding: 0 9px;
+  height: 46px;
+  padding: 0 12px;
   font-family: inherit;
   font-size: inherit;
   color: #000000;
@@ -607,7 +607,7 @@ body.closed #task-window {
 #start-button {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   font-weight: bold;
 }
 
@@ -623,8 +623,8 @@ body.closed #task-window {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 46px;
+  height: 46px;
   font-weight: bold;
   color: #000000;
   text-decoration: none;
@@ -641,26 +641,22 @@ body.closed #task-window {
 }
 
 #quick-launch img {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   image-rendering: pixelated;
 }
 
-/* Four-color flag */
+/* Pixel-art portrait, same style as the quick-launch icons */
 .start-logo {
-  width: 20px;
-  height: 17px;
-  background:
-    linear-gradient(#ff0000, #ff0000) top left / 50% 50% no-repeat,
-    linear-gradient(#00a000, #00a000) top right / 50% 50% no-repeat,
-    linear-gradient(#0000ff, #0000ff) bottom left / 50% 50% no-repeat,
-    linear-gradient(#ffc000, #ffc000) bottom right / 50% 50% no-repeat;
-  transform: skewY(-6deg);
+  width: 32px;
+  height: 32px;
+  background: url("images/icons/start_me.svg") center / contain no-repeat;
+  image-rendering: pixelated;
 }
 
 /* This page's window; cuts off long titles with "..." */
 #task-window {
-  flex: 0 1 280px;
+  flex: 0 1 340px;
   min-width: 0;
   overflow: hidden;
   white-space: nowrap;
@@ -674,7 +670,7 @@ body.closed #task-window {
 
 #tray-clock {
   margin-left: auto;
-  padding: 5px 12px;
+  padding: 8px 14px;
   border: 1px solid;
   border-color: #808080 #ffffff #ffffff #808080;
 }
@@ -682,7 +678,7 @@ body.closed #task-window {
 #start-menu {
   position: absolute;
   left: 2px;
-  bottom: 40px;
+  bottom: 54px;
   display: flex;
   background-color: #c0c0c0;
   border: 2px solid;
