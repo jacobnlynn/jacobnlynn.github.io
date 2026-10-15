@@ -5,12 +5,23 @@
 }
 
 body {
-  background-color: #008080;
+  background-color: #06041a;
   color: #000000;
   font-family: "Times New Roman", Times, serif;
   font-size: 16px;
   margin: 0;
   padding: 10px 10px 52px 10px; /* bottom leaves room for the taskbar */
+}
+
+/* Desktop wallpaper: a tiny pixel-art galaxy blown up with hard edges.
+   Lives on its own layer so the pixelated look doesn't spread to photos. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url("images/galaxy_wallpaper.png") center / cover no-repeat;
+  image-rendering: pixelated;
 }
 
 /* Raised gray box filling nearly the whole window */
