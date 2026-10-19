@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Jacob Lynn - Portfolio</title>
+  <!-- Print version of the whole site on one page, for saving as a PDF.
+       Same text as the site pages, without the window/taskbar decoration. -->
+  <style>
+    @page {
+      size: letter;
+      margin: 0.7in 0.75in 0.75in 0.75in;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: #1a1a1a;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 10pt;
+      line-height: 1.4;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    h1, h2, h3, .subtitle, .facts, figcaption, .contents, .flow {
+      font-family: "Segoe UI", Calibri, Arial, sans-serif;
+    }
+
+    a {
+      color: #1d3f8f;
+      text-decoration: none;
+    }
+
+    p {
+      margin: 0 0 0.75em 0;
+      text-align: justify;
+      hyphens: auto;
+      orphans: 3;
+      widows: 3;
+    }
+
+    /* ---- Header ---- */
+    header {
+      border-bottom: 2px solid #1d3f8f;
+      padding-bottom: 10pt;
+      margin-bottom: 16pt;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    header h1 {
+      font-size: 28pt;
+      font-weight: 600;
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      font-size: 11pt;
+      color: #444;
+      margin-top: 3pt;
+    }
+
+    .contact {
+      font-family: "Segoe UI", Calibri, Arial, sans-serif;
+      font-size: 9.5pt;
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    /* ---- Section headings ---- */
+    h2 {
+      font-size: 15pt;
+      font-weight: 600;
+      color: #1d3f8f;
+      margin: 12pt 0 5pt 0;
+      padding-bottom: 2pt;
+      border-bottom: 1px solid #c9d2e6;
+      break-after: avoid;
+    }
+
+    h3 {
+      font-size: 11.5pt;
+      font-weight: 600;
+      margin: 10pt 0 3pt 0;
+      break-after: avoid;
+    }
+
+    /* Each project starts on a new page with a big title */
+    .project {
+      break-before: page;
+    }
+
+    .project > h1 {
+      font-size: 22pt;
+      font-weight: 600;
+      margin: 0 0 2pt 0;
+    }
+
+    .project > .tagline {
+      font-family: "Segoe UI", Calibri, Arial, sans-serif;
+      color: #555;
+      font-size: 10.5pt;
+      margin: 0 0 4pt 0;
+    }
+
+    .project > h2:first-of-type {
+      margin-top: 8pt;
+    }
+
+    /* ---- About section ---- */
+    .about {
+      display: flex;
+      gap: 18pt;
+      align-items: flex-start;
+    }
+
+    .about p {
+      flex: 1;
+    }
+
+    .facts {
+      width: 2.35in;
+      flex-shrink: 0;
+      background: #f1f4fa;
+      border-left: 3px solid #1d3f8f;
+      padding: 8pt 10pt;
+      font-size: 9pt;
+      line-height: 1.35;
+    }
+
+    .facts dl {
+      margin: 0;
+    }
+
+    .facts dt {
+      font-weight: 600;
+      color: #1d3f8f;
+      margin-top: 5pt;
+    }
+
+    .facts dt:first-child {
+      margin-top: 0;
+    }
+
+    .facts dd {
+      margin: 0;
+    }
+
+    /* ---- Projects list on page one ---- */
+    .contents {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12pt;
+      margin-top: 6pt;
+    }
+
+    .contents a {
+      color: inherit;
+      display: block;
+    }
+
+    .contents img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      border: 1px solid #ccc;
+    }
+
+    .contents strong {
+      display: block;
+      font-size: 10.5pt;
+      margin-top: 4pt;
+      color: #1d3f8f;
+    }
+
+    .contents span {
+      display: block;
+      font-size: 9pt;
+      color: #444;
+      line-height: 1.35;
+    }
+
+    /* ---- Figures ---- */
+    figure {
+      margin: 0;
+      break-inside: avoid;
+    }
+
+    figure img {
+      width: 100%;
+      display: block;
+      border: 1px solid #ccc;
+    }
+
+    figcaption {
+      font-size: 8.5pt;
+      color: #555;
+      text-align: center;
+      margin-top: 3pt;
+      line-height: 1.25;
+    }
+
+    /* Picture(s) beside the text */
+    .side {
+      float: right;
+      width: 44%;
+      margin: 2pt 0 8pt 16pt;
+    }
+
+    /* Row of pictures all the same height: each figure's flex is its width/height ratio */
+    .row {
+      display: flex;
+      gap: 8pt;
+      align-items: flex-start;
+      margin: 6pt 0 12pt 0;
+      break-inside: avoid;
+    }
+
+    .side .row {
+      margin: 0;
+    }
+
+    .wide {
+      margin: 6pt 0 12pt 0;
+    }
+
+    .clear {
+      clear: both;
+    }
+
+    /* "A -> B -> C" sequences */
+    .flow {
+      font-size: 9.5pt;
+      background: #f1f4fa;
+      padding: 5pt 9pt;
+      margin: 0 0 0.75em 0;
+      text-align: left;
+      break-inside: avoid;
+      display: flow-root;
+    }
+
+    /* Keeps a lead-in sentence on the same page as its flow box */
+    .keep {
+      break-inside: avoid;
+    }
+
+    .keep-with-prev {
+      break-before: avoid;
+    }
+
+    .narrow {
+      width: 72%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .note {
+      font-family: "Segoe UI", Calibri, Arial, sans-serif;
+      font-size: 9pt;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Jacob Lynn</h1>
+    <div class="subtitle">Mechanical Engineering, Minor in Computer Science<br>Stanford University &middot; Class of 2029</div>
+  </div>
+  <div class="contact">
+    <a href="mailto:jnlynn@stanford.edu">jnlynn@stanford.edu</a><br>
+    <a href="https://jacobnlynn.github.io">jacobnlynn.github.io</a>
+  </div>
+</header>
+
+<h2>About Me</h2>
+<div class="about">
+  <p>
+    Hi! I'm Jacob Lynn and I am a sophomore (Class of 2029) studying mechanical engineering with a minor in
+    comp sci at Stanford University. I also do research in the Stanford ARMLab where I work on electromagnetic robotic muscles
+    for tendon-driven robot hands! I'm interested in robotics and space and I've always loved to create. My dream job would someday
+    be to work on space robotics :). This website is meant to serve as a portfolio of what I have made in college so far! I hope
+    you look around, and please reach out to me if you have any questions or thoughts:
+    <a href="mailto:jnlynn@stanford.edu">jnlynn@stanford.edu</a>
+  </p>
+  <div class="facts">
+    <dl>
+      <dt>Major</dt>
+      <dd>Mechanical Engineering</dd>
+      <dt>Minor</dt>
+      <dd>Computer Science</dd>
+      <dt>Research</dt>
+      <dd>Stanford ARMLab &ndash; electromagnetic muscles for tendon-driven robot hands</dd>
+      <dt>Interests</dt>
+      <dd>Robotics, space</dd>
+      <dt>Dream job</dt>
+      <dd>Space robotics</dd>
+    </dl>
+  </div>
+</div>
+
+<h2>Projects</h2>
+<div class="contents">
+  <a href="#limbed-robot">
+    <img src="limbed_robot_preview.jpg" alt="">
+    <strong>Limbed Robot Project</strong>
+    <span>A generic, modular framework for building limbed robots, and a 12-DoF robot dog built with it.</span>
+  </a>
+  <a href="#europa">
+    <img src="europa_lander_preview.jpg" alt="">
+    <strong>Europa &ndash; Benthic Lander</strong>
+    <span>A low-cost, open source deep-ocean research lander with SSI. I lead the mechanical design.</span>
+  </a>
+  <a href="#irec">
+    <img src="irec_payload_preview.jpg" alt="">
+    <strong>IREC &ndash; Payload</strong>
+    <span>Mechanical redesign of a rocket payload for growing crystals in microgravity.</span>
+  </a>
+</div>
+
+
+<!-- =================== Limbed Robot =================== -->
+<section class="project" id="limbed-robot">
+  <h1>Limbed Robot Project</h1>
+
+  <h2>Project Overview</h2>
+  <figure class="side" style="width: 34%">
+    <img src="images/limbed_robot/robot_dog.jpg" alt="Robot dog CAD model">
+    <figcaption>Robot Dog</figcaption>
+  </figure>
+  <p>
+    The large overarching goal of this project is to make a generic framework for making limbed robots.
+    All limbed robots can be described from one link to another with 4 numbers (D-H Coordinates). I wanted to
+    make a more physical interpretation of this. Another big element of limbed robots is the torque/speed of each
+    joint. This is determined by the gear ratio and the motor. To make the project simple, I assumed there was only
+    one motor. Therefore, this project is:
+  </p>
+  <p>
+    I am trying to make a generic model of a robot link where both gearboxes and the physical link to link distance
+    is very modifiable and easy to change. I am using a single motor and have designed a set of gearboxes (3:1, 9:1, ..)
+    and am currently designing a system to make them easily swappable. In terms of the distance from link to link I have designed
+    a simple input/output mechanism that is easy to screw in, so from the output of one motor the next link can be at whatever
+    angle and placement.
+  </p>
+  <p>
+    Using this system, I have designed and built a full-sized robot dog. I have also designed (but not yet built) a series of other
+    classic limbed robots, including multiple 7DoF robot arms, a copy of the JPL RoboSimian, hexapods, and more robot dogs.
+  </p>
+  <div class="clear"></div>
+
+  <h2>Initial Attempts</h2>
+  <figure class="side">
+    <img src="images/limbed_robot/crab_dog.jpg" alt="Crab robot CAD model">
+    <figcaption>Crab dog</figcaption>
+  </figure>
+  <p>
+    I've spent almost a year on this project so far (and there is still lots to go!). The project started out
+    as an attempt to build a walking and climbing robot (with little spikes I designed). I wanted to make a sort
+    of "crab robot", that walked sideways and could also climb trees/porous objects like a crab did. I got as far as
+    making a full CAD model of the crab (pictured to the right). However, the CAD had many issues, with the main ones I
+    could foresee was the spiked foot being backdrivable and general problems with chain tension. I decided I should CAD
+    another model before moving onto prototyping.
+  </p>
+  <p>
+    It was because of designing that version that I realized that a lot of the mechanical design behind robotics can be
+    generalized. I only wanted to add a simple hook mechanism at the bottom of an already existing robot dog
+    design. I then started to work on a generalized robot dog. At that point in time, I only was trying to make a system
+    that people can edit the length of and have a dog of varying lengths. It was then that I designed the next version of
+    the robot dog. I started to physically prototype too, 3D printing all of my versions and testing them. The major design
+    changes from this version was moving to a belt driven mechanism and also have a not-backdrivable worm gear for the
+    climbing mechanism.
+  </p>
+  <div class="row clear narrow">
+    <figure style="flex: 1">
+      <img src="images/limbed_robot/short_leg.jpg" alt="Short leg">
+      <figcaption>Short leg</figcaption>
+    </figure>
+    <figure style="flex: 1">
+      <img src="images/limbed_robot/leg_comparison.jpg" alt="Comparing leg designs">
+      <figcaption>Comparing leg designs</figcaption>
+    </figure>
+    <figure style="flex: 1">
+      <img src="images/limbed_robot/capstan_prototype.jpg" alt="Capstan prototyping">
+      <figcaption>Capstan prototyping</figcaption>
+    </figure>
+    <figure style="flex: 1">
+      <img src="images/limbed_robot/leg_prototype.jpg" alt="Leg prototyping">
+      <figcaption>Leg prototyping</figcaption>
+    </figure>
+  </div>
+
+  <h2>QDD Actuator</h2>
+  <figure class="wide narrow">
+    <img src="images/limbed_robot/qdd_exploded.jpg" alt="Exploded view of the QDD actuator">
+    <figcaption>Exploded view of actuator</figcaption>
+  </figure>
+  <p>
+    I realized I needed a QDD (quasi-direct drive) actuator because of the gear ratios that I needed.
+    Because I was using drone motors, I had a very low torque and a very high rpm (which is the opposite of
+    what I needed for a robot dog). I could only get a max of 3:1 ratio with a belt drive, while I could easily
+    get a 5:1 or 9:1 ratio with a planetary gearbox. When I designed and tested the planetary gearbox, it worked
+    very well, and I switched to the final project that I am working on now (generic limb robot). After a couple iterations
+    of design I landed on a 5:1 gear ratio planetary gearbox with helical gears. There is relatively low friction and almost
+    no backlash. This actuator became the core of all further designs. It produces around 4Nm of torque at ~740 rpm (still very
+    fast and relatively weak). The motor powering the current actuator is a tmotor MN5212, which produces around
+    .75nM of torque at a stable operating state. It runs on 6S voltage (22.4v)
+  </p>
+  <p>
+    The actuator is the main place of improvement of my design. Because I was limited by 3D printed gears
+    I was limited to what module I could print the gears, and therefore the ratio I could get. I am planning
+    on trying to reduce the module as much as I can go (I have done a 9:1 ratio already which has worked), and
+    also look into different types of gearboxes (cycloidal, harmonic, etc).
+  </p>
+
+  <h2>Full Robot Dog</h2>
+  <figure class="side">
+    <img src="images/limbed_robot/full_robot_dog.jpg" alt="Full robot dog">
+    <figcaption>Full robot dog (ignore wire management)</figcaption>
+  </figure>
+  <p>
+    I have fully built and mechanically tested a simple version of the robot dog so far. It stands at
+    about 6in off the ground and weighs around 13 pounds. It runs off a 10000mAh 6S battery, where it can
+    comfortably walk and jump for around 20 minutes. It has 12DoF in the same directions as many of the standard
+    industry robot dogs that exist. Its hip and upper leg joints are powered by 2 5:1 ratio QDD actuators and the
+    lower leg joint is powered by a belt at a 3:1 ratio. It took many iterations and 3D prints to get to the current
+    state. It is mostly 3D printed, for reproducibility and cost.
+  </p>
+
+  <h3>Electronics</h3>
+  <p>
+    The dog is powered by a teensy 4.1 microcontroller that runs a micro-ros node which communicates
+    with the computer. Each individual motor is powered by a moteus r4.11 motor controller. These also serve
+    as the encoders for the motor, and are all connected together with a FD-CAN protocol. These controllers
+    are powered directly by a 10,000mAh 6S battery which feeds into two PDBs which split the current into
+    all of the 12 controllers.
+  </p>
+
+  <h3>Software</h3>
+  <p>
+    I am currently still working on the software, but it will be run with a ROS2 environment. Each motor controller
+    will be a node which will then feed into a node for each leg (hip + upper_joint + lower_joint). Each leg node will
+    calculate the position of the tip of the leg using the jacobian and will account for any errors with basic PID
+    control. Some basic trotting/crawling/walking behaviors will then be designed.
+  </p>
+  <div class="clear"></div>
+
+  <h2>Other Limbed Robots</h2>
+  <p>
+    Using the generic QDD actuator, I designed many more limbed robots to demonstrate the projects potential.
+    While many of the gearboxes need to be designed, I was able to design almost any type of limbed robot, from
+    various models of robot arms to more obscure old robots (JPL's robosimian). Each of the different CADs shown need
+    various gear ratios, from the 5-Bar robot dog only needed the current 5:1 to the robot arms which need upwards of
+    50:1 ratios in them.
+  </p>
+  <div class="row">
+    <figure style="flex: 1">
+      <img src="images/limbed_robot/five_bar_dog.jpg" alt="5-Bar Robot Dog">
+      <figcaption>5-Bar Robot Dog</figcaption>
+    </figure>
+    <figure style="flex: 1">
+      <img src="images/limbed_robot/arm_7dof_90.jpg" alt="7DoF Robot Arm (90 degree joints)">
+      <figcaption>7DoF Robot Arm (90&deg; joints)</figcaption>
+    </figure>
+    <figure style="flex: 1">
+      <img src="images/limbed_robot/arm_7dof_45.jpg" alt="7DoF Robot Arm (45 degree joints)">
+      <figcaption>7DoF Robot Arm (45&deg; joints)</figcaption>
+    </figure>
+    <figure style="flex: 1">
+      <img src="images/limbed_robot/robosimian.jpg" alt="RoboSimian Mimic">
+      <figcaption>RoboSimian Mimic</figcaption>
+    </figure>
+  </div>
+  <p class="note">
+    Interactive 3D CAD models of the robot dog and each of these robots can be viewed at
+    <a href="https://jacobnlynn.github.io/limbed_robot.html">jacobnlynn.github.io</a>.
+  </p>
+
+  <h2>Future Work</h2>
+  <p>
+    There is a lot of work to do in the future. The first thing
+    I need to do is design more gearboxes along the same form factor. Then I hope to make the gearbox
+    systems easily swappable. I also hope to improve the link between joints to be more diverse or more
+    easily snapped on (versus screwed on). I will try to occasionally update this page according to my current
+    progress, but my hope is that someday this can be an open source project! I hope this can help people build
+    more types of robots easier, and not make them have to rediscover the same stuff. I hope these robots and this
+    framework can act as a jumping off point for other people to build more creative and more diverse robots :)
+  </p>
+</section>
+
+
+<!-- =================== Europa =================== -->
+<section class="project" id="europa">
+  <h1>Europa &ndash; Benthic Lander</h1>
+
+  <h2>Overview</h2>
+  <figure class="side">
+    <img src="images/europa_lander/monterey_boat_test.jpg" alt="Four team members in life vests on a boat in Monterey Bay">
+    <figcaption>Monterey Bay boat test (100m)</figcaption>
+  </figure>
+  <p>
+    I co-lead the Europa subsection of SSI (Stanford Student Space Institute)! We are designing a low-cost (&lt;$5k) open source
+    benthic lander for ocean trench level depths to be used as a research platform for scientists.
+    Benthic Landers are scientific research platforms dropped to the bottom of the ocean,
+    where they sit for a couple hours then drop a weight and float back up. Deep sea benthic
+    landers often cost upwards of $300,000, a problem we are trying to fix.
+    Our goal is to make a generalized research platform for deep ocean research that any scientist
+    can easily make for a reasonable price.
+  </p>
+  <p>
+    There are a couple main parts to the project, the mechanical structure and equipment, the electronics,
+    the biology/scientific aspect, and the computer science. I lead the mechanical design of the lander! The mechanical design
+    has a couple parts: the structure, timed-releases, and various sampling equipment.
+  </p>
+  <p>
+    The structure is the part most affected by pressure. The most important part of this design is to make a strong, rigid structure
+    while also keeping the buoyancy such that it always stays upright. Because of this, we design long forms with our glass/acrylic
+    tube that can withstand pressure on top. We have multiple of these, one of which that holds the electronics and another higher
+    structure that sends out a radio/gps signal when at the top. It is the job of the structure to make sure the radio/gps tube is
+    floating high above the water and will not tip in the waves.
+  </p>
+  <p>
+    The timed-releases are in charge of releasing the weights and many of the water/soil/dna captures. They are galvanic-timed
+    releases, which means they are made with a link of metal that corrodes in sea water for a consistent amount of time (ex: 2 hours).
+    The mechanical team is in charge of pre-soaking many of the releases so that they trigger at certain times, so the timeline of events
+    looks like:
+  </p>
+  <p class="flow">
+    Dropped in water &rarr; sinks to bottom &rarr; water/DNA/soil captures trigger &rarr; weight releases and lander floats back to the top
+  </p>
+  <p>
+    The most mechanically complex part of the benthic lander are the various soil/DNA/water capture mechanisms. Because of the extreme
+    pressures, we cannot use any electronics when designing these. Therefore, they are all timed-release or spring-driven. The most developed
+    was the soil claw, which I made multiple prototypes of both spring-driven and timed-release versions. We also made two versions of a timed-release water capture
+    tube and are currently working on a pressure-driven DNA capture device.
+  </p>
+  <div class="clear"></div>
+
+  <h2>Early Prototypes</h2>
+  <div class="side">
+    <div class="row">
+      <figure style="flex: 1.06">
+        <img src="images/europa_lander/early_cad_model.jpg" alt="Fusion CAD model of the early prototype lander">
+        <figcaption>Early CAD model</figcaption>
+      </figure>
+      <figure style="flex: 1.07">
+        <img src="images/europa_lander/arrillaga_pool_test.jpg" alt="Prototype lander with pool-noodle floats suspended in the pool">
+        <figcaption>Early test in the Arrillaga Gymnasium Pool</figcaption>
+      </figure>
+    </div>
+  </div>
+  <p>
+    We spent the past year (first year of the club) making a proof of concept benthic lander
+    to make sure we have all of the mechanisms and concepts working. We used a small, clear acrylic
+    tube that was rated for 1000m. We also used pvc pipes for the structure (instead of aluminum which we
+    will eventually use in the deep sea version).
+  </p>
+  <p>
+    We learned many things from our weekly early tests in the Stanford pool. The biggest was issues with buoyancy and
+    stability of the whole lander. We had positioned the main center of buoyancy underneath the center of weight, which
+    made the lander tip easily (messing up the gps). However, we learned many things and also got the galvanic
+    timed-releases working consistently!
+  </p>
+  <p>
+    Another place where we learned a lot was the material we made the structures out of. We found out that we can easily prototype with
+    3D printed parts as long as they are printed with a low infill and holes are drilled in them (allowing water to flood the part).
+  </p>
+  <p>
+    The part we changed the most was the structure underneath. We had many variations, from legs to an H configuration to long tubes downwards.
+    The structure underneath determined a lot about the buoyancy. The weight needed to be placed underneath but even after the weight was dropped,
+    the center of mass still needed to stay underneath the center of buoyancy, which required much trial and error. Another important consideration
+    was the placement of the soil/water samplers (we didn't have DNA at the time). They needed to have enough room for them to work but must be placed
+    underneath the center of buoyancy (because they were heavy).
+  </p>
+  <div class="clear"></div>
+
+  <h2>Claw Testing</h2>
+  <p>
+    The claw was one of the more complex design problems on the lander (and it was my initial role!). I initially prototyped a couple versions,
+    including simple hinge jaws and also more complex 4-bar jaws that were designed to sweep soil off the floor more efficiently. I also played around
+    with mechanisms that would not be spring loaded but rather pulled shut when the lander dropped the weight and started to float back up. However,
+    with testing I found that the easiest and most reliable mechanism was a simple galvanic timed-release.
+  </p>
+  <div class="row">
+    <figure style="flex: 0.96">
+      <img src="images/europa_lander/double_four_bar_claw.jpg" alt="CAD model of a claw with two four-bar linkage jaws and a trigger plate underneath">
+      <figcaption>Double 4-bar mechanism with ground pressure trigger</figcaption>
+    </figure>
+    <figure style="flex: 0.81">
+      <img src="images/europa_lander/spring_hinge_claw.jpg" alt="Black 3D printed hinge claw held open, with a rubber band spring across the scissor arms">
+      <figcaption>Spring-loaded hinge claw prototype</figcaption>
+    </figure>
+    <figure style="flex: 1.11">
+      <img src="images/europa_lander/hinge_claw.jpg" alt="3D printed hinge claw mounted under the early acrylic tube">
+      <figcaption>Hinge claw on early tube design</figcaption>
+    </figure>
+  </div>
+
+  <h2>Successful Tests</h2>
+  <p>
+    Over the period of a year we tested extensively in the pool and occasionally in the ocean. When we would test in the pool we would not test timed-releases
+    but we would video and collect water pressure data. We designed a setup within the tube where we can measure water pressure and therefore estimate how deep
+    we are to ~10ft. We would test more or less every weekend in the pool whatever advancement we had made that week.
+  </p>
+  <div class="row">
+    <figure style="flex: 0.75">
+      <img src="images/europa_lander/sf_bay_first_test.jpg" alt="Three team members on a pier in the SF Bay preparing the lander, which lies on the ground">
+      <figcaption>First test at SF Bay</figcaption>
+    </figure>
+    <figure style="flex: 0.80">
+      <img src="images/europa_lander/monterey_pier_test.jpg" alt="Three team members on a pier holding the lander, with a red flag on top">
+      <figcaption>Pier test in Monterey Bay</figcaption>
+    </figure>
+    <figure style="flex: 0.75">
+      <img src="images/europa_lander/pool_pressure_temp_test.jpg" alt="The lander floating in the pool seen from above, with pool-noodle floats and a flag">
+      <figcaption>Pool test measuring pressure and temperature</figcaption>
+    </figure>
+    <figure style="flex: 0.79">
+      <img src="images/europa_lander/lander_underwater_rov.jpg" alt="The benthic lander underwater in green water, seen from an ROV">
+      <figcaption>Benthic lander underwater (taken from a ROV)</figcaption>
+    </figure>
+  </div>
+  <p>
+    The interesting tests were the ocean tests though. There we would test all the mechanisms we could. The first test we did, we went to the SF Bay,
+    which was a mistake. The water was very wavy, cold, and there was no visibility. We also were freezing in the high winds (we were right under the Golden Gate
+    Bridge). However, the lander performed very well! All video function worked perfectly and the timed-releases (it was the first test of them) worked all according
+    to plan.
+  </p>
+  <p>
+    The next tests were much better. We emailed MBARI (Monterey Bay Aquarium Research Institute), and they took us out on their boat to
+    test in deeper and clearer waters. We also integrated some bait hooks right in front of our cameras to hopefully capture some fish.
+    The first tests we simply did off a pier (which also worked very well), and then we went on the boat for those tests. The boat tests worked
+    perfectly according to plan, we were able to collect water pressure, water temperature, video footage, and water samples. The weight release
+    also worked as planned! Unfortunately we had a bad kind of bait and no fish wanted to be near us.
+  </p>
+
+  <h2>Future Work</h2>
+  <p>
+    The future of the Europa team is looking very exciting. At the end of last year, we decided we had tested the proof of concept enough and
+    we bought a sphere rated for 12,000m (deeper than the Mariana Trench). We will be developing a aluminum structure and working the electronics
+    around the new housing. Perhaps the biggest change is redesigning all of the claws and soil/water/DNA collectors. We have many ideas how we use the
+    changing pressures of going deep into powering DNA collectors and water samplers.
+  </p>
+</section>
+
+
+<!-- =================== IREC =================== -->
+<section class="project" id="irec">
+  <h1>IREC &ndash; Payload</h1>
+
+  <h2>Overview</h2>
+  <div class="side" style="width: 32%">
+    <div class="row">
+      <figure style="flex: 0.68">
+        <img src="images/irec_payload/exterior_structure.jpg" alt="Hand holding the assembled aluminum payload box with interlocking panels and screws">
+        <figcaption>Exterior structure of the payload</figcaption>
+      </figure>
+      <figure style="flex: 0.28">
+        <img src="images/irec_payload/payload_on_rocket.jpg" alt="Aluminum payload box mounted on top of the white rocket body with fins">
+        <figcaption>Payload on rocket</figcaption>
+      </figure>
+    </div>
+  </div>
+  <p>
+    I was on part of the team that designed the payload for Stanford's IREC team (in Stanford Student Space Institute (SSI)).
+    On one of the test flights/rocket prototypes I was in charge of the mechanical redesign of the payload. The payload was a
+    100mmx100mmx200mm box.
+  </p>
+  <p>
+    The payload was designed with all the scientific equipment to synthesize crystals in microgravity.
+    The plan was the payload would fly into the air and the chemical reaction would start at the apogee of the flight,
+    at which point it was ejected with the parachute for a couple more sections of microgravity. The entire process was
+    only around ~10-20 seconds. There was a camera pointed at a petri dish inside the payload, which recorded
+    the crystal growth. There were two separate plans to make crystals. The first was simply to inject a supersaturated
+    liquid into a petri dish, where it would naturally start to form crystals. The second was to have two separate liquids
+    that would mix the liquids and make crystals through the chemical reaction between them. I had to design for a payload
+    that could do either option.
+  </p>
+  <p>
+    The biggest changes that I redesigned was the external structure. The previous payload was simply a 3D printed circular
+    structure that fit within the rocket. The new version had to be part of the rocket and support it.
+  </p>
+  <div class="clear"></div>
+
+  <h2>Interior/Exterior Design</h2>
+  <div class="side" style="width: 42%">
+    <div class="row">
+      <figure style="flex: 0.85">
+        <img src="images/irec_payload/tiered_interior_cad.jpg" alt="Fusion CAD model of the payload's tiered interior inside a transparent frame">
+        <figcaption>CAD of tiered interior</figcaption>
+      </figure>
+      <figure style="flex: 0.75">
+        <img src="images/irec_payload/semi_assembled_interior.jpg" alt="Black 3D printed tiers stacked on a workbench with tubing, wiring, and the solenoid inside">
+        <figcaption>Semi-assembled interior structure</figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="keep">
+  <p>
+    The biggest challenge with the interior design was simply fitting every part inside. The complete system was:
+  </p>
+  <p class="flow">
+    Two syringes &rarr; tubing &rarr; solenoid with gas canister &rarr; Petri dish
+  </p>
+  </div>
+  <p>
+    There was also a large camera right above the petri dish and a large mess of electronics boards, tubing, and wiring.
+    I also wanted to design the entire system to be very modular. We had experienced problems in the past where, if a wire
+    or part broke, it would be very hard to repair (needing to take apart the entire system). I designed a multi-tiered system
+    that was also easy to slide out of the metal frame. Each tier would have some section of parts attached to it, so you
+    could simply take that tier out and edit the parts. The whole system was 3D printed.
+    There was also a large hole that ran through one of the sides so that any tier can access another with tubes/wires, making
+    that hole be the main wire/tube highway. A dedicated electronics tier was also very helpful for repairs.
+    The tiers were organized as:
+  </p>
+  <p class="flow keep-with-prev">
+    Petri Dish Tier &rarr; Syringe/Camera Tier &rarr; Gas Canister/Solenoid Tier &rarr; Electronics Tier
+  </p>
+  <p>
+    After that first payload I actually redesigned another. This one kept the same exterior structure, but
+    we changes how we wanted to bracket it. The new redesigned structure got rid of the tiers and replaced it with a simple
+    two-tiered system, which ended up being super simple and robust. The 3D prints were very easy to repair and every part was
+    easily accessible. That version was the best design of the payload, but it never flew due to the year ending
+  </p>
+  <p>
+    The biggest challenge of the interiors was making sure everything was very secure/vibration resistant. Because we
+    had fragile glass petri-dishes and cameras and syringes full of chemicals, we did not want our payload to leak/be damaged. While
+    we toyed with the idea of some sort of spring suspension, we found that if we designed everything to be extremely perfectly toleranced,
+    then the vibrations would not break the equipment. Through 3D printed trials and multiple broken petri dishes, we found perfect tolerances
+    for all of the interior parts. The petri dish was held in with a set screw to be able to be removed easily while also being very secure.
+  </p>
+  <p>
+    The exterior design was a different design challenge. The main forces and challenges facing it was that it was now part of the
+    physical structure of the rocket (which goes mach1+). It needed to be very sturdy but also easy to take apart so we could
+    load the chemicals safely (and at the test site). Our final version was able to
+    integrate well with the rest of the rocket and also was very sturdy. It was made of laser cut aluminum.
+  </p>
+  <div class="clear"></div>
+
+  <h2>Disaster.......</h2>
+  <div class="side" style="width: 34%">
+    <div class="row">
+      <figure style="flex: 0.46">
+        <img src="images/irec_payload/crash_landing.jpg" alt="Blurry video frame of the rocket hitting the ground in a burst of fire and smoke">
+        <figcaption>Crash landing at &gt;Mach 1</figcaption>
+      </figure>
+      <figure style="flex: 0.75">
+        <img src="images/irec_payload/recovered_payload.jpg" alt="Four bent and dirt-covered aluminum panels from the crashed payload on a workbench">
+        <figcaption>All that could be recovered from the payload</figcaption>
+      </figure>
+    </div>
+  </div>
+  <p>
+    While the payload looked very beautiful and the interiors functioned well (on the ground), the rocket
+    carrying the payload crashed (hard)(not because of the payload). The payload design did not cause the crash.
+    The rocket ended up crashing into the ground at over Mach 1, completely decimating the interiors of the payload and
+    completely squishing the exterior. The entire front half of the rocket disintegrated&nbsp;:&#8288;(.
+  </p>
+  <p>
+    A more positive note for the payloads structure is that the payload is what stopped the rockets
+    crash, meaning that we were able to recover (somewhat) everything behind the payload even if the payload
+    got disintegrated.
+  </p>
+  <div class="clear"></div>
+</section>
+
+</body>
+</html>
