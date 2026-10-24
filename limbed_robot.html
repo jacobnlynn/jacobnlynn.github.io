@@ -29,6 +29,7 @@
 
   <div id="tabs">
     <a href="index.html" class="home">Jacob Lynn</a>
+    <a href="reconfigurable_robot.html">Reconfigurable Robot Builder</a>
     <a href="limbed_robot.html" class="current">Limbed Robot Project</a>
     <a href="europa_lander.html">Europa - Benthic Lander</a>
     <!-- ARMLab hidden for now: <a href="stanford_armlab.html">Stanford ARMLab</a> -->
@@ -226,6 +227,38 @@
         <img src="images/limbed_robot/robosimian.jpg" alt="RoboSimian Mimic CAD preview">
         <span class="cad-hint">RoboSimian Mimic</span>
       </button>
+    </div>
+
+    <div class="section">
+    <h2 id="qdd-redesign">QDD Actuator Redesigned</h2>
+    <hr>
+    <div class="float-right wide">
+      <figure>
+        <img src="images/limbed_robot/cycloidal_exploded.jpg" alt="Exploded view of the cycloidal actuator">
+        <figcaption>Exploded Cycloidal Actuator</figcaption>
+      </figure>
+      <figure>
+        <img src="images/limbed_robot/harmonic_exploded.jpg" alt="Exploded view of the harmonic gearbox">
+        <figcaption>Harmonic Gearbox Exploded</figcaption>
+      </figure>
+    </div>
+    <p>
+      Because of the relatively low max gear ratios of the planetary gearbox (maxing out at around (9:1)),
+      I designed two other gearboxes. I designed a harmonic gearbox which has a ratio of 22.5:1 and a 
+      cycloidal gearbox which has a ratio of 18:1. Both of these gearboxes have a lot of advantages compared 
+      to the planetary gearboxes. They are both lighter due to less bearings and they have a much higher gear ratio
+      in a more compact space. Because they were so compact I was able to keep it in the same form factor.
+      <br><br>
+      Designing all the gearboxes to fit in teh same form factor is a big part of my project. I want to design
+      a generic robot system such that a user can swap the motors or gearboxes to get different speeds and torques. 
+      All gearboxes were designed along the same input/output system, so they can be easily swapped. 
+      <br><br>
+      I am also in the process of designing swappable gearboxes. I hope that every part of this system can be very modular
+      and swappable, so that as many robots as possible can be created with the same basic set of parts. 
+      <br><br>
+      The cycloidal gearbox has a torque of about 12.6Nm at 255RPM. The harmonic gearbox has a torque of
+      about 15.75Nm at 204 RPM. 
+    </p>
     </div>
 
     <h2 id="future">Future Work</h2>

@@ -114,6 +114,18 @@ a:active  { color: #ff0000; }
   border-color: #ffffff #404040 #404040 #ffffff;
 }
 
+/* Panel that holds a whole embedded website (reconfigurable_robot.html) */
+#panel.embed {
+  display: flex;
+  padding: 0;
+}
+
+#panel.embed iframe {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
+
 /* ---- Clickable thumbnail (resume preview) ---- */
 
 .thumb {
