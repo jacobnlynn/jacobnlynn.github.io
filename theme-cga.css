@@ -1,0 +1,505 @@
+/* CGA theme: an old DOS program in the four-colour CGA palette (black, cyan,
+   magenta, white). Double-line boxes, solid colour blocks, pixel and terminal
+   fonts, square everything. Photos are shown as they are, just framed. */
+
+:root {
+  color-scheme: dark;
+  --black: #000000;
+  --cyan: #55ffff;
+  --magenta: #ff55ff;
+  --white: #ffffff;
+  --box-cyan: 6px double var(--cyan);
+  --box-white: 6px double var(--white);
+  --box-magenta: 6px double var(--magenta);
+  --head: "Silkscreen", "VT323", monospace;
+}
+
+body {
+  background: var(--black);
+  color: var(--cyan);
+  font: 21px/1.3 "VT323", ui-monospace, Consolas, monospace;
+  -webkit-font-smoothing: none;
+}
+
+::selection {
+  background: var(--magenta);
+  color: var(--black);
+}
+
+a {
+  color: var(--magenta);
+}
+
+a:hover {
+  background: var(--magenta);
+  color: var(--black);
+}
+
+:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+
+* {
+  scrollbar-color: var(--cyan) var(--black);
+}
+
+.skip-link {
+  background: var(--white);
+  color: var(--black);
+  padding: 2px 10px;
+}
+
+/* ---- Header ---- */
+
+.site-head {
+  padding: 12px 0 0;
+}
+
+.site-head .wrap {
+  max-width: 1080px;
+  border: var(--box-white);
+  padding: 6px 14px;
+}
+
+.logo {
+  font: 400 18px var(--head);
+  color: var(--white);
+}
+
+.logo::before {
+  content: "\263A ";
+  color: var(--magenta);
+}
+
+.logo:hover {
+  background: none;
+  color: var(--white);
+}
+
+.nav a {
+  padding: 0 10px;
+  color: var(--black);
+  background: var(--cyan);
+}
+
+.nav a:nth-child(even) {
+  background: var(--magenta);
+}
+
+.nav a[aria-current] {
+  background: var(--white);
+}
+
+.nav a:hover {
+  background: var(--black);
+  color: var(--white);
+  box-shadow: inset 0 0 0 2px var(--white);
+}
+
+/* ---- Page heading ---- */
+
+.kicker {
+  color: var(--white);
+}
+
+.kicker::before {
+  content: "C:\\JACOB> ";
+  color: var(--cyan);
+}
+
+.kicker::after {
+  content: "_";
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+h1 {
+  font: 400 clamp(32px, 5.5vw, 54px)/1.1 var(--head);
+  color: var(--white);
+  text-shadow: 4px 4px 0 var(--magenta);
+}
+
+.hero-box {
+  border: var(--box-cyan);
+  padding: 20px 24px;
+}
+
+.btn {
+  padding: 2px 14px;
+  border: 2px solid var(--cyan);
+  color: var(--cyan);
+}
+
+.btn::before {
+  content: "\25BA ";
+}
+
+.btn-primary {
+  background: var(--cyan);
+  color: var(--black);
+}
+
+.btn:hover {
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--black);
+}
+
+.toc a {
+  padding: 0 8px;
+  border: 2px solid var(--cyan);
+  color: var(--cyan);
+}
+
+.toc a::before {
+  content: "\2192 ";
+  color: var(--magenta);
+}
+
+.toc a:hover {
+  background: var(--cyan);
+  color: var(--black);
+}
+
+.toc a:hover::before {
+  color: var(--black);
+}
+
+/* ---- Sections ---- */
+
+.section h2 {
+  font: 400 21px var(--head);
+  color: var(--white);
+}
+
+.section h2::before {
+  content: "\2550\2550\2561 ";
+  color: var(--cyan);
+}
+
+.section h2::after {
+  content: " \255E\2550\2550";
+  color: var(--cyan);
+}
+
+.section h3 {
+  font: 400 16px var(--head);
+  color: var(--magenta);
+}
+
+.section h3::before {
+  content: "\25A0 ";
+}
+
+.card h3::before {
+  content: none;
+}
+
+.panel {
+  border: 2px solid var(--cyan);
+  padding: 14px 18px;
+}
+
+figure img {
+  border: 2px solid var(--cyan);
+}
+
+figure img.enlargeable:hover {
+  border-color: var(--magenta);
+}
+
+figcaption {
+  color: var(--magenta);
+  font-size: 18px;
+  line-height: 1.15;
+}
+
+figcaption::before {
+  content: "\25B2 ";
+}
+
+/* CAD buttons */
+.cad-launch {
+  background: var(--black);
+  color: var(--cyan);
+  border: 2px solid var(--cyan);
+}
+
+.cad-launch img {
+  border-bottom: 2px solid var(--cyan);
+}
+
+.cad-label::before {
+  content: "\25BA ";
+  color: var(--magenta);
+}
+
+.cad-launch:hover {
+  border-color: var(--magenta);
+}
+
+.cad-launch:hover .cad-label {
+  background: var(--magenta);
+  color: var(--black);
+}
+
+.cad-launch:hover .cad-label::before {
+  color: var(--black);
+}
+
+/* ---- Home page ---- */
+
+.viewer-box {
+  border: var(--box-magenta);
+}
+
+.box-head {
+  background: var(--magenta);
+  color: var(--black);
+  padding: 0 10px;
+}
+
+.cad-embed {
+  background: var(--white);
+}
+
+.cad-tabs {
+  padding: 6px;
+  border-top: 2px solid var(--magenta);
+}
+
+.cad-tabs button {
+  padding: 0 8px;
+  border: 0;
+  background: var(--black);
+  color: var(--cyan);
+}
+
+.cad-tabs button:hover {
+  color: var(--white);
+}
+
+.cad-tabs button[aria-selected="true"] {
+  background: var(--cyan);
+  color: var(--black);
+}
+
+.statusbar {
+  padding: 0 10px;
+  background: var(--cyan);
+  color: var(--black);
+}
+
+.statusbar a {
+  color: var(--black);
+}
+
+.facts {
+  border: var(--box-white);
+  padding: 14px 18px;
+  gap: 4px 14px;
+}
+
+.facts dt {
+  color: var(--magenta);
+}
+
+.facts dt::after {
+  content: ":";
+}
+
+.facts dd {
+  color: var(--white);
+}
+
+.resume-thumb {
+  border: var(--box-cyan);
+}
+
+.resume-thumb:hover {
+  border-color: var(--magenta);
+  background: none;
+}
+
+.card {
+  border: 2px solid var(--cyan);
+}
+
+.card:hover {
+  border-color: var(--magenta);
+  background: none;
+  color: inherit;
+}
+
+.card-img {
+  border-bottom: 2px solid var(--cyan);
+}
+
+.card:hover .card-img {
+  border-color: var(--magenta);
+}
+
+.card h3 {
+  font: 400 15px/1.3 var(--head);
+  color: var(--white);
+}
+
+.card p {
+  font-size: 19px;
+}
+
+.tag {
+  align-self: flex-start;
+  padding: 0 6px;
+  background: var(--magenta);
+  color: var(--black);
+  font-size: 17px;
+  text-transform: uppercase;
+}
+
+.more {
+  color: var(--magenta);
+}
+
+.card:hover .more {
+  align-self: flex-start;
+  background: var(--magenta);
+  color: var(--black);
+}
+
+/* ---- Embedded website ---- */
+
+.embed-frame {
+  border: var(--box-cyan);
+}
+
+/* ---- Previous / next ---- */
+
+.pager {
+  border-top: 2px solid var(--cyan);
+}
+
+.pager a {
+  padding: 4px 12px;
+  border: 2px solid var(--cyan);
+  color: var(--cyan);
+}
+
+.pager a:hover {
+  background: var(--cyan);
+  color: var(--black);
+}
+
+.pager small {
+  display: block;
+  color: var(--magenta);
+}
+
+.pager a:hover small {
+  color: var(--black);
+}
+
+/* ---- Footer ---- */
+
+.site-foot {
+  padding: 8px 0 72px; /* room for the floating buttons */
+}
+
+.site-foot .wrap {
+  max-width: 1080px;
+  padding: 4px 14px;
+  background: var(--cyan);
+  color: var(--black);
+}
+
+.site-foot a {
+  color: var(--black);
+}
+
+.site-foot a:hover {
+  background: var(--black);
+  color: var(--cyan);
+}
+
+.float-controls button {
+  padding: 0 10px;
+  border: 2px solid var(--black);
+  background: var(--magenta);
+  color: var(--black);
+}
+
+.float-controls button:hover {
+  background: var(--black);
+  color: var(--magenta);
+}
+
+/* ---- Pop-up windows ---- */
+
+dialog {
+  background: var(--black);
+  color: var(--cyan);
+  border: var(--box-cyan);
+}
+
+dialog::backdrop {
+  background: rgb(0 0 0 / 0.8);
+}
+
+dialog .titlebar {
+  padding: 0 0 0 10px;
+  background: var(--cyan);
+  color: var(--black);
+}
+
+dialog .close {
+  padding: 0 10px;
+  border: 0;
+  background: var(--magenta);
+  color: var(--black);
+}
+
+dialog .close:hover {
+  background: var(--white);
+}
+
+.photo-view {
+  padding: 10px;
+}
+
+.photo-controls {
+  padding: 0 10px 8px;
+}
+
+.photo-controls button {
+  padding: 0 10px;
+  border: 2px solid var(--cyan);
+  background: var(--black);
+  color: var(--cyan);
+}
+
+.photo-controls button:hover:not(:disabled) {
+  background: var(--cyan);
+  color: var(--black);
+}
+
+.photo-controls button:disabled {
+  opacity: 0.4;
+}
+
+.photo-caption {
+  color: var(--magenta);
+}
+
+dialog .statusbar {
+  margin: 0;
+}
+
+#cad-window .cad-view {
+  background: var(--white);
+}

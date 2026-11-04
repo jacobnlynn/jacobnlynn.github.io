@@ -1,0 +1,450 @@
+/* Risograph theme: printed in two inks, medium blue and fluorescent pink, on
+   newsprint. Blue does the text and linework; pink is the second ink, used for
+   headings, marks and the solid offset shadows. Zine voice: lower case.
+   Photos are shown as they are, just framed. */
+
+:root {
+  color-scheme: light;
+  --paper: #f4f1ea;
+  --paper-d: #ebe5e6;
+  --blue: #1f4fd8;
+  --blue-2: #2346b5;
+  --line: #b3bfe8;
+  --pink: #ff4f9a; /* pink ink, for fills and marks */
+  --pink-ink: #c8146a; /* pink dark enough for small text */
+  --pink-soft: #f9c6db;
+  --display: "Rubik Mono One", "Arial Black", sans-serif;
+  --mono: "Space Mono", ui-monospace, Consolas, monospace;
+}
+
+/* Paper with a fine grain of both inks */
+body {
+  color: var(--blue);
+  font: 17px/1.55 "Karla", "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--paper);
+  background-image: radial-gradient(rgb(31 79 216 / 0.09) 0.8px, transparent 1px),
+    radial-gradient(rgb(255 79 154 / 0.1) 0.8px, transparent 1px);
+  background-size: 7px 7px, 11px 11px;
+  background-position: 0 0, 3px 5px;
+}
+
+::selection {
+  background: var(--pink-soft);
+}
+
+a {
+  color: var(--pink-ink);
+  text-underline-offset: 3px;
+}
+
+:focus-visible {
+  outline: 2px dashed var(--pink-ink);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  background: var(--blue);
+  color: var(--paper);
+  padding: 4px 10px;
+}
+
+/* ---- Masthead ---- */
+
+.site-head {
+  padding: 16px 0;
+  border-bottom: 2px solid var(--blue);
+}
+
+.logo {
+  font: 400 22px/1 var(--display);
+  color: var(--blue);
+}
+
+.logo::after {
+  content: " \2022";
+  color: var(--pink);
+}
+
+.nav {
+  gap: 6px 20px;
+}
+
+.nav a {
+  font: 700 14px var(--mono);
+  text-transform: lowercase;
+  color: var(--blue);
+}
+
+.nav a:hover,
+.nav a[aria-current] {
+  background: rgb(255 79 154 / 0.45);
+  mix-blend-mode: multiply;
+}
+
+/* ---- Page heading ---- */
+
+.page-hero {
+  padding: 48px 0 32px;
+  border-bottom: 1.5px dashed var(--blue);
+}
+
+.kicker {
+  font: 700 13px var(--mono);
+  text-transform: lowercase;
+  color: var(--pink-ink);
+}
+
+h1 {
+  font: 400 clamp(36px, 6.5vw, 72px)/0.98 var(--display);
+  text-transform: lowercase;
+  color: var(--blue);
+  text-shadow: 4px 3px 0 rgb(255 79 154 / 0.75);
+}
+
+.lede {
+  font-size: 20px;
+}
+
+.btn {
+  padding: 9px 16px;
+  border: 2px solid var(--blue);
+  font: 700 14px var(--mono);
+  text-transform: lowercase;
+  color: var(--blue);
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: var(--paper);
+  box-shadow: 4px 4px 0 var(--pink);
+}
+
+.btn-primary:hover {
+  background: var(--blue-2);
+}
+
+.btn:not(.btn-primary):hover {
+  background: var(--pink-soft);
+}
+
+.toc a {
+  padding: 2px 10px;
+  border: 1.5px solid var(--blue);
+  font: 700 13px var(--mono);
+  text-transform: lowercase;
+  color: var(--blue);
+}
+
+.toc a:hover {
+  background: rgb(255 79 154 / 0.45);
+  mix-blend-mode: multiply;
+}
+
+/* ---- Sections: dashed rules between them ---- */
+
+.section {
+  border-bottom: 1.5px dashed var(--blue);
+  padding: 44px 0;
+}
+
+.section h2 {
+  font: 400 26px/1.15 var(--display);
+  text-transform: lowercase;
+  color: var(--pink-ink);
+}
+
+.section h3 {
+  font: 700 14px var(--mono);
+  text-transform: lowercase;
+  color: var(--blue);
+}
+
+.section h3::before {
+  content: "\2014  ";
+  color: var(--pink);
+}
+
+.card h3::before {
+  content: none;
+}
+
+figure img {
+  border: 2px solid var(--blue);
+  background: var(--paper);
+}
+
+figure img.enlargeable:hover {
+  box-shadow: 5px 5px 0 var(--pink);
+}
+
+figcaption {
+  font: 12.5px/1.4 var(--mono);
+  text-transform: lowercase;
+  color: var(--blue-2);
+}
+
+/* "fig. 1", "fig. 2", ... down each page */
+main {
+  counter-reset: fig;
+}
+
+figure {
+  counter-increment: fig;
+}
+
+figcaption::before {
+  content: "fig. " counter(fig) " \2014  ";
+  color: var(--pink-ink);
+}
+
+/* CAD buttons */
+.cad-launch {
+  border: 2px solid var(--blue);
+  background: var(--paper);
+  color: var(--blue);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.cad-launch img {
+  border-bottom: 2px solid var(--blue);
+}
+
+.cad-label {
+  font: 700 13px var(--mono);
+  text-transform: lowercase;
+}
+
+.cad-launch:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--pink);
+}
+
+/* ---- Home page ---- */
+
+.home-hero {
+  padding: 52px 0 40px;
+}
+
+.viewer-box {
+  border: 2px solid var(--blue);
+  background: var(--paper);
+  box-shadow: 10px 10px 0 var(--pink);
+}
+
+.box-head {
+  padding: 4px 10px;
+  border-bottom: 2px solid var(--blue);
+  font: 700 12.5px var(--mono);
+}
+
+.cad-embed {
+  background: #ffffff;
+}
+
+.cad-tabs {
+  padding: 8px;
+  border-top: 2px solid var(--blue);
+  gap: 6px;
+}
+
+.cad-tabs button {
+  padding: 1px 8px;
+  border: 1.5px solid var(--blue);
+  background: transparent;
+  color: var(--blue);
+  font: 700 12.5px var(--mono);
+  text-transform: lowercase;
+}
+
+.cad-tabs button[aria-selected="true"] {
+  background: rgb(255 79 154 / 0.5);
+  mix-blend-mode: multiply;
+}
+
+.statusbar {
+  padding: 4px 10px;
+  border-top: 1.5px dashed var(--blue);
+  font: 12.5px var(--mono);
+  text-transform: lowercase;
+}
+
+.facts {
+  padding: 16px 18px;
+  border: 2px solid var(--blue);
+  background: var(--paper);
+  box-shadow: 6px 6px 0 var(--pink);
+}
+
+.facts dt {
+  font: 700 12px/1.9 var(--mono);
+  text-transform: lowercase;
+  color: var(--pink-ink);
+}
+
+.facts dd {
+  font-weight: 600;
+}
+
+.facts dd + dt,
+.facts dd + dt + dd {
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+}
+
+.resume-thumb {
+  border: 2px solid var(--blue);
+  box-shadow: 6px 6px 0 var(--pink);
+  transform: rotate(-1.5deg);
+  transition: transform 0.15s;
+}
+
+.resume-thumb:hover {
+  transform: rotate(0deg);
+}
+
+.card {
+  border: 2px solid var(--blue);
+  background: var(--paper);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--pink);
+}
+
+.card-img {
+  border-bottom: 2px solid var(--blue);
+}
+
+.card h3 {
+  font: 400 16px/1.25 var(--display);
+  text-transform: lowercase;
+}
+
+.card p {
+  font-size: 15px;
+  color: var(--blue-2);
+}
+
+.tag {
+  align-self: flex-start;
+  padding: 0 6px;
+  border: 1.5px solid var(--pink-ink);
+  font: 700 11px var(--mono);
+  text-transform: lowercase;
+  color: var(--pink-ink);
+}
+
+.more {
+  font: 700 13px var(--mono);
+  text-transform: lowercase;
+  color: var(--pink-ink);
+}
+
+/* ---- Embedded website ---- */
+
+.embed-frame {
+  border: 2px solid var(--blue);
+  box-shadow: 8px 8px 0 var(--pink);
+}
+
+/* ---- Previous / next ---- */
+
+.pager a {
+  font: 400 15px/1.3 var(--display);
+  text-transform: lowercase;
+  color: var(--blue);
+}
+
+.pager a:hover {
+  color: var(--pink-ink);
+}
+
+.pager small {
+  display: block;
+  font: 700 12px var(--mono);
+  color: var(--pink-ink);
+}
+
+/* ---- Footer ---- */
+
+.site-foot {
+  padding: 22px 0 76px; /* room for the floating buttons */
+  border-top: 2px solid var(--blue);
+}
+
+.site-foot .wrap {
+  font: 13px var(--mono);
+  text-transform: lowercase;
+}
+
+.float-controls button {
+  padding: 7px 14px;
+  border: 2px solid var(--blue);
+  background: var(--blue);
+  color: var(--paper);
+  font: 700 13px var(--mono);
+  text-transform: lowercase;
+  box-shadow: 4px 4px 0 var(--pink);
+}
+
+.float-controls button:hover {
+  background: var(--blue-2);
+}
+
+/* ---- Pop-up windows ---- */
+
+dialog {
+  border: 2px solid var(--blue);
+  background: var(--paper);
+  color: var(--blue);
+  box-shadow: 10px 10px 0 var(--pink);
+}
+
+dialog::backdrop {
+  background: rgb(31 79 216 / 0.35);
+}
+
+dialog .titlebar {
+  padding: 6px 6px 6px 14px;
+  border-bottom: 2px solid var(--blue);
+  font: 700 13px var(--mono);
+}
+
+dialog .close,
+.photo-controls button {
+  padding: 3px 10px;
+  border: 2px solid var(--blue);
+  background: transparent;
+  color: var(--blue);
+  font: 700 13px var(--mono);
+  text-transform: lowercase;
+}
+
+dialog .close:hover,
+.photo-controls button:hover:not(:disabled) {
+  background: var(--pink-soft);
+}
+
+.photo-controls button:disabled {
+  opacity: 0.4;
+}
+
+.photo-view {
+  padding: 14px;
+}
+
+.photo-controls {
+  padding: 0 14px 12px;
+}
+
+.photo-caption {
+  font: 13px var(--mono);
+  text-transform: lowercase;
+  color: var(--pink-ink);
+}
+
+#cad-window .cad-view {
+  background: #ffffff;
+}

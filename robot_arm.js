@@ -1,6 +1,7 @@
 // Experimental: pixel-art robot arm whose base slides along the screen edge and
 // tries to grab the cursor. Self-contained; to remove it, delete this file and the
 // <script src="robot_arm.js"></script> line in each page.
+// Pages can turn it off and on with window.robotArm.setEnabled(false / true).
 (function () {
   // Desktop only: needs a real mouse, a reasonably wide screen, and motion allowed.
   if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
@@ -12,7 +13,21 @@
   var JOINT_SPEED = 3;      // max joint speed, radians per second
   var GRAB_DIST = 4.5;      // art pixels between fingertips and cursor to count as a grab
 
-  var BLACK = 0xff000000, WHITE = 0xffffffff, GREY = 0xffa8a8a8;
+  // Colours as 0xAABBGGRR (the canvas byte order). "Outline" draws the edges and
+  // dark details, "core" fills the links and joints, "shade" is the grooves and
+  // shadows. Pages with <html data-theme="..."> get colours that show up on that
+  // theme's background; other pages (the classic site) get black and white.
+  var PALETTES = {
+    classic:   { outline: 0xff000000, core: 0xffffffff, shade: 0xffa8a8a8 },
+    cga:       { outline: 0xffffff55, core: 0xff000000, shade: 0xffff55ff }, // cyan, black, magenta
+    risograph: { outline: 0xffd84f1f, core: 0xffeaf1f4, shade: 0xff9a4fff }  // blue ink, paper, pink ink
+  };
+  var BLACK, WHITE, GREY;
+
+  function pickColours() {
+    var p = PALETTES[document.documentElement.dataset.theme] || PALETTES.classic;
+    BLACK = p.outline; WHITE = p.core; GREY = p.shade;
+  }
 
   var canvas = document.createElement("canvas");
   canvas.setAttribute("aria-hidden", "true");
@@ -190,6 +205,7 @@
   }
 
   function draw(base) {
+    pickColours(); // cheap, and follows the theme as soon as it's switched
     buf.fill(0);
     var k = forward(base);
     var ux = Math.cos(a[2]), uy = Math.sin(a[2]), vx = -uy, vy = ux;
@@ -228,11 +244,26 @@
   resize();
 
   var last = performance.now();
+  var running = true;
   function frame(now) {
+    if (!running) return;
     var dt = Math.min(0.05, (now - last) / 1000);
     last = now;
     draw(update(dt));
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
+
+  window.robotArm = {
+    enabled: function () { return running; },
+    setEnabled: function (on) {
+      if (on === running) return;
+      running = on;
+      canvas.style.display = on ? "" : "none";
+      if (on) {
+        last = performance.now();
+        requestAnimationFrame(frame);
+      }
+    }
+  };
 })();

@@ -1,185 +1,248 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="risograph">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Europa - Benthic Lander - Jacob Lynn</title>
-  <link rel="stylesheet" href="format.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700&family=Rubik+Mono+One&family=Silkscreen&family=Space+Mono:wght@400;700&family=VT323&display=swap">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="theme-risograph.css" id="theme-css">
+  <!-- Use the theme picked with the dark/light button (see site.js) -->
+  <script>
+    try {
+      if (localStorage.getItem("theme") === "cga") {
+        document.documentElement.dataset.theme = "cga";
+        document.getElementById("theme-css").href = "theme-cga.css";
+      }
+    } catch (error) {}
+  </script>
 </head>
 <body>
-<div id="page">
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Window title bar; the buttons are run by personal_code.js -->
-  <div class="titlebar" id="window-title">
-    <span>Europa - Benthic Lander - Jacob Lynn</span>
-    <span class="window-buttons">
-      <button id="win-min" aria-label="Minimize"></button>
-      <button id="win-max" aria-label="Maximize"></button>
-      <button id="win-close" aria-label="Close">X</button>
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="index.html">Jacob Lynn</a>
+    <nav class="nav" aria-label="Site">
+      <a href="reconfigurable_robot.html">Robot Builder</a>
+      <a href="limbed_robot.html">Limbed Robot</a>
+      <a href="europa_lander.html" aria-current="page">Europa Lander</a>
+      <a href="irec_payload.html">IREC Payload</a>
+      <a href="resume.pdf">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="page-hero">
+    <div class="wrap">
+      <div class="hero-box">
+        <p class="kicker">Stanford Student Space Institute</p>
+        <h1>Europa - Benthic Lander</h1>
+        <ul class="toc" aria-label="On this page">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#prototypes">Early Prototypes</a></li>
+          <li><a href="#claw">Claw Testing</a></li>
+          <li><a href="#tests">Successful Tests</a></li>
+          <li><a href="#future">Future Work</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" id="overview">
+    <div class="wrap">
+      <h2>Overview</h2>
+      <div class="split">
+        <div>
+          <p>
+            I co-lead the Europa subsection of SSI (Stanford Student Space Institute)! We are designing a low-cost (&lt;$5k) open source
+            benthic lander for ocean trench level depths to be used as a research platform for scientists.
+            Benthic Landers are scientific research platforms dropped to the bottom of the ocean,
+            where they sit for a couple hours then drop a weight and float back up. Deep sea benthic
+            landers often cost upwards of $300,000, a problem we are trying to fix.
+            Our goal is to make a generalized research platform for deep ocean research that any scientist
+            can easily make for a reasonable price.
+          </p>
+          <p>
+            There are a couple main parts to the project, the mechanical structure and equipment, the electronics,
+            the biology/scientific aspect, and the computer science. I lead the mechanical design of the lander! The mechanical design
+            has a couple parts: the structure, timed-releases, and various sampling equipment.
+          </p>
+          <p>
+            The structure is the part most affected by pressure. The most important part of this design is to make a strong, rigid structure
+            while also keeping the buoyancy such that it always stays upright. Because of this, we design long forms with our glass/acrylic
+            tube that can withstand pressure on top. We have multiple of these, one of which that holds the electronics and another higher
+            structure that sends out a radio/gps signal when at the top. It is the job of the structure to make sure the radio/gps tube is
+            floating high above the water and will not tip in the waves.
+          </p>
+          <p>
+            The timed-releases are in charge of releasing the weights and many of the water/soil/dna captures. They are galvanic-timed
+            releases, which means they are made with a link of metal that corrodes in sea water for a consistent amount of time (ex: 2 hours).
+            The mechanical team is in charge of pre-soaking many of the releases so that they trigger at certain times, so the timeline of events
+            looks like:<br>
+            dropped in water -&gt; sinks to bottom -&gt; water/DNA/soil captures trigger -&gt; weight releases and lander floats back to the top
+          </p>
+          <p>
+            The most mechanically complex part of the benthic lander are the various soil/DNA/water capture mechanisms. Because of the extreme
+            pressures, we cannot use any electronics when designing these. Therefore, they are all timed-release or spring-driven. The most developed
+            was the soil claw, which I made multiple prototypes of both spring-driven and timed-release versions. We also made two versions of a timed-release water capture
+            tube and are currently working on a pressure-driven DNA capture device.
+          </p>
+        </div>
+        <div class="figs">
+          <figure>
+            <img src="images/europa_lander/monterey_boat_test.jpg" alt="Four team members in life vests on a boat in Monterey Bay">
+            <figcaption>Monterey Bay Boat Test (100m)</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="prototypes">
+    <div class="wrap">
+      <h2>Early Prototypes</h2>
+      <div class="split">
+        <div>
+          <p>
+            We spent the past year (first year of the club) making a proof of concept benthic lander
+            to make sure we have all of the mechanisms and concepts working. We used a small, clear acrylic
+            tube that was rated for 1000m. We also used pvc pipes for the structure (instead of aluminum which we
+            will eventually use in the deep sea version).
+          </p>
+          <p>
+            We learned many things from our weekly early tests in the Stanford pool. The biggest was issues with buoyancy and
+            stability of the whole lander. We had positioned the main center of buoyancy underneath the center of weight, which
+            made the lander tip easily (messing up the gps). However, we learned many things and also got the galvanic
+            timed-releases working consistently!
+          </p>
+          <p>
+            Another place where we learned a lot was the material we made the structures out of. We found out that we can easily prototype with
+            3D printed parts as long as they are printed with a low infill and holes are drilled in them (allowing water to flood the part).
+          </p>
+          <p>
+            The part we changed the most was the structure underneath. We had many variations, from legs to an H configuration to long tubes downwards.
+            The structure underneath determined a lot about the buoyancy. The weight needed to be placed underneath but even after the weight was dropped,
+            the center of mass still needed to stay underneath the center of buoyancy, which required much trial and error. Another important consideration
+            was the placement of the soil/water samplers (we didn't have DNA at the time). They needed to have enough room for them to work but must be placed
+            underneath the center of buoyancy (because they were heavy).
+          </p>
+        </div>
+        <div class="figs">
+          <figure>
+            <img src="images/europa_lander/early_cad_model.jpg" alt="Fusion CAD model of the early prototype lander">
+            <figcaption>Early CAD model</figcaption>
+          </figure>
+          <figure>
+            <img src="images/europa_lander/arrillaga_pool_test.jpg" alt="Prototype lander with pool-noodle floats suspended in the pool">
+            <figcaption>Early test in the Arrillaga Gymnasium Pool</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="claw">
+    <div class="wrap">
+      <h2>Claw Testing</h2>
+      <p>
+        The claw was one of the more complex design problems on the lander (and it was my initial role!). I initially prototyped a couple versions,
+        including simple hinge jaws and also more complex 4-bar jaws that were designed to sweep soil off the floor more efficiently. I also played around
+        with mechanisms that would not be spring loaded but rather pulled shut when the lander dropped the weight and started to float back up. However,
+        with testing I found that the easiest and most reliable mechanism was a simple galvanic timed-release.
+      </p>
+      <div class="fig-row">
+        <figure style="flex: 0.96">
+          <img src="images/europa_lander/double_four_bar_claw.jpg" alt="CAD model of a claw with two four-bar linkage jaws and a trigger plate underneath">
+          <figcaption>Double 4-Bar Mechanism with Ground Pressure Trigger</figcaption>
+        </figure>
+        <figure style="flex: 0.81">
+          <img src="images/europa_lander/spring_hinge_claw.jpg" alt="Black 3D printed hinge claw held open, with a rubber band spring across the scissor arms">
+          <figcaption>Spring-Loaded Hinge Claw Prototype</figcaption>
+        </figure>
+        <figure style="flex: 1.11">
+          <img src="images/europa_lander/hinge_claw.jpg" alt="3D printed hinge claw mounted under the early acrylic tube">
+          <figcaption>Hinge Claw on Early Tube Design</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tests">
+    <div class="wrap">
+      <h2>Successful Tests</h2>
+      <p>
+        Over the period of a year we tested extensively in the pool and occasionally in the ocean. When we would test in the pool we would not test timed-releases
+        but we would video and collect water pressure data. We designed a setup within the tube where we can measure water pressure and therefore estimate how deep
+        we are to ~10ft. We would test more or less every weekend in the pool whatever advancement we had made that week.
+      </p>
+      <p>
+        The interesting tests were the ocean tests though. There we would test all the mechanisms we could. The first test we did, we went to the SF Bay,
+        which was a mistake. The water was very wavy, cold, and there was no visibility. We also were freezing in the high winds (we were right under the Golden Gate
+        Bridge). However, the lander performed very well! All video function worked perfectly and the timed-releases (it was the first test of them) worked all according
+        to plan.
+      </p>
+      <p>
+        The next tests were much better. We emailed MBARI (Monterey Bay Aquarium Research Institute), and they took us out on their boat to
+        test in deeper and clearer waters. We also integrated some bait hooks right in front of our cameras to hopefully capture some fish.
+        The first tests we simply did off a pier (which also worked very well), and then we went on the boat for those tests. The boat tests worked
+        perfectly according to plan, we were able to collect water pressure, water temperature, video footage, and water samples. The weight release
+        also worked as planned! Unfortunately we had a bad kind of bait and no fish wanted to be near us.
+      </p>
+      <div class="fig-row">
+        <figure style="flex: 0.75">
+          <img src="images/europa_lander/sf_bay_first_test.jpg" alt="Three team members on a pier in the SF Bay preparing the lander, which lies on the ground">
+          <figcaption>First Test at SF Bay</figcaption>
+        </figure>
+        <figure style="flex: 0.80">
+          <img src="images/europa_lander/monterey_pier_test.jpg" alt="Three team members on a pier holding the lander, with a red flag on top">
+          <figcaption>Pier Test in Monterey Bay</figcaption>
+        </figure>
+        <figure style="flex: 0.75">
+          <img src="images/europa_lander/pool_pressure_temp_test.jpg" alt="The lander floating in the pool seen from above, with pool-noodle floats and a flag">
+          <figcaption>Pool Test Measuring Pressure and Temperature</figcaption>
+        </figure>
+        <figure style="flex: 0.79">
+          <img src="images/europa_lander/lander_underwater_rov.jpg" alt="The benthic lander underwater in green water, seen from an ROV">
+          <figcaption>Benthic Lander Underwater (Taken from a ROV)</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="future">
+    <div class="wrap">
+      <h2>Future Work</h2>
+      <p>
+        The future of the Europa team is looking very exciting. At the end of last year, we decided we had tested the proof of concept enough and
+        we bought a sphere rated for 12,000m (deeper than the Mariana Trench). We will be developing a aluminum structure and working the electronics
+        around the new housing. Perhaps the biggest change is redesigning all of the claws and soil/water/DNA collectors. We have many ideas how we use the
+        changing pressures of going deep into powering DNA collectors and water samplers.
+      </p>
+    </div>
+  </section>
+
+  <nav class="wrap pager" aria-label="More projects">
+    <a class="prev" href="limbed_robot.html"><small>&larr; Previous</small>Limbed Robot Project</a>
+    <a class="next" href="irec_payload.html"><small>Next &rarr;</small>IREC - Payload</a>
+  </nav>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>&copy; 2026 Jacob Lynn &middot; <a href="mailto:jnlynn@stanford.edu">jnlynn@stanford.edu</a></span>
+    <span class="foot-links">
+      <a href="classic/europa_lander.html">Windows 95 version</a>
     </span>
   </div>
+</footer>
 
-  <div id="tabs">
-    <a href="index.html" class="home">Jacob Lynn</a>
-    <a href="reconfigurable_robot.html">Reconfigurable Robot Builder</a>
-    <a href="limbed_robot.html">Limbed Robot Project</a>
-    <a href="europa_lander.html" class="current">Europa - Benthic Lander</a>
-    <!-- ARMLab hidden for now: <a href="stanford_armlab.html">Stanford ARMLab</a> -->
-    <a href="irec_payload.html">IREC - Payload</a>
-  </div>
-  <div id="panel">
-
-    <div class="section">
-    <h2 id="overview">Overview</h2>
-    <hr>
-    <div class="float-right wide">
-      <figure>
-        <img src="images/europa_lander/monterey_boat_test.jpg" alt="Four team members in life vests on a boat in Monterey Bay">
-        <figcaption>Monterey Bay Boat Test (100m)</figcaption>
-      </figure>
-    </div>
-    <p>
-      I co-lead the Europa subsection of SSI (Stanford Student Space Institute)! We are designing a low-cost (<$5k) open source 
-      benthic lander for ocean trench level depths to be used as a research platform for scientists. 
-      Benthic Landers are scientific research platforms dropped to the bottom of the ocean,
-      where they sit for a couple hours then drop a weight and float back up. Deep sea benthic
-      landers often cost upwards of $300,000, a problem we are trying to fix. 
-      Our goal is to make a generalized research platform for deep ocean research that any scientist
-      can easily make for a reasonable price. 
-      <br><br>
-      There are a couple main parts to the project, the mechanical structure and equipment, the electronics,
-      the biology/scientific aspect, and the computer science. I lead the mechanical design of the lander! The mechanical design 
-      has a couple parts: the structure, timed-releases, and various sampling equipment. 
-      <br><br>
-      The structure is the part most affected by pressure. The most important part of this design is to make a strong, rigid structure
-      while also keeping the buoyancy such that it always stays upright. Because of this, we design long forms with our glass/acrylic 
-      tube that can withstand pressure on top. We have multiple of these, one of which that holds the electronics and another higher 
-      structure that sends out a radio/gps signal when at the top. It is the job of the structure to make sure the radio/gps tube is 
-      floating high above the water and will not tip in the waves. 
-      <br><br>
-      The timed-releases are in charge of releasing the weights and many of the water/soil/dna captures. They are galvanic-timed 
-      releases, which means they are made with a link of metal that corrodes in sea water for a consistent amount of time (ex: 2 hours). 
-      The mechanical team is in charge of pre-soaking many of the releases so that they trigger at certain times, so the timeline of events
-      looks like: <br>
-      dropped in water -> sinks to bottom -> water/DNA/soil captures trigger -> weight releases and lander floats back to the top
-      <br><br>
-      The most mechanically complex part of the benthic lander are the various soil/DNA/water capture mechanisms. Because of the extreme
-      pressures, we cannot use any electronics when designing these. Therefore, they are all timed-release or spring-driven. The most developed
-      was the soil claw, which I made multiple prototypes of both spring-driven and timed-release versions. We also made two versions of a timed-release water capture
-      tube and are currently working on a pressure-driven DNA capture device. 
-    </p>
-    </div>
-
-    <div class="section">
-    <h2 id="prototypes">Early Prototypes</h2>
-    <hr>
-    <div class="float-right pair">
-      <figure>
-        <img src="images/europa_lander/early_cad_model.jpg" alt="Fusion CAD model of the early prototype lander">
-        <figcaption>Early CAD model</figcaption>
-      </figure>
-      <figure>
-        <img src="images/europa_lander/arrillaga_pool_test.jpg" alt="Prototype lander with pool-noodle floats suspended in the pool">
-        <figcaption>Early test in the Arrillaga Gymnasium Pool</figcaption>
-      </figure>
-    </div>
-    <p>
-      We spent the past year (first year of the club) making a proof of concept benthic lander
-      to make sure we have all of the mechanisms and concepts working. We used a small, clear acrylic
-      tube that was rated for 1000m. We also used pvc pipes for the structure (instead of aluminum which we
-      will eventually use in the deep sea version). 
-      <br><br>
-      We learned many things from our weekly early tests in the Stanford pool. The biggest was issues with buoyancy and 
-      stability of the whole lander. We had positioned the main center of buoyancy underneath the center of weight, which
-      made the lander tip easily (messing up the gps). However, we learned many things and also got the galvanic 
-      timed-releases working consistently!
-      <br><br>
-      Another place where we learned a lot was the material we made the structures out of. We found out that we can easily prototype with
-      3D printed parts as long as they are printed with a low infill and holes are drilled in them (allowing water to flood the part). 
-      <br><br>
-      The part we changed the most was the structure underneath. We had many variations, from legs to an H configuration to long tubes downwards. 
-      The structure underneath determined a lot about the buoyancy. The weight needed to be placed underneath but even after the weight was dropped,
-      the center of mass still needed to stay underneath the center of buoyancy, which required much trial and error. Another important consideration
-      was the placement of the soil/water samplers (we didn't have DNA at the time). They needed to have enough room for them to work but must be placed
-      underneath the center of buoyancy (because they were heavy). 
-    </p>
-    </div>
-
-    <div class="section">
-    <h2 id="claw">Claw Testing</h2>
-    <hr>
-    <div class="float-right pair trio">
-      <figure style="flex: 0.96">
-        <img src="images/europa_lander/double_four_bar_claw.jpg" alt="CAD model of a claw with two four-bar linkage jaws and a trigger plate underneath">
-        <figcaption>Double 4-Bar Mechanism with Ground Pressure Trigger</figcaption>
-      </figure>
-      <figure style="flex: 0.81">
-        <img src="images/europa_lander/spring_hinge_claw.jpg" alt="Black 3D printed hinge claw held open, with a rubber band spring across the scissor arms">
-        <figcaption>Spring-Loaded Hinge Claw Prototype</figcaption>
-      </figure>
-      <figure style="flex: 1.11">
-        <img src="images/europa_lander/hinge_claw.jpg" alt="3D printed hinge claw mounted under the early acrylic tube">
-        <figcaption>Hinge Claw on Early Tube Design</figcaption>
-      </figure>
-    </div>
-    <p>
-      The claw was one of the more complex design problems on the lander (and it was my initial role!). I initially prototyped a couple versions,
-      including simple hinge jaws and also more complex 4-bar jaws that were designed to sweep soil off the floor more efficiently. I also played around
-      with mechanisms that would not be spring loaded but rather pulled shut when the lander dropped the weight and started to float back up. However,
-      with testing I found that the easiest and most reliable mechanism was a simple galvanic timed-release. 
-    </p>
-    </div>
-
-    <div class="section">
-    <h2 id="tests">Successful Tests</h2>
-    <hr>
-    <div class="float-right pair quad">
-      <figure style="flex: 0.75">
-        <img src="images/europa_lander/sf_bay_first_test.jpg" alt="Three team members on a pier in the SF Bay preparing the lander, which lies on the ground">
-        <figcaption>First Test at SF Bay</figcaption>
-      </figure>
-      <figure style="flex: 0.80">
-        <img src="images/europa_lander/monterey_pier_test.jpg" alt="Three team members on a pier holding the lander, with a red flag on top">
-        <figcaption>Pier Test in Monterey Bay</figcaption>
-      </figure>
-      <figure style="flex: 0.75">
-        <img src="images/europa_lander/pool_pressure_temp_test.jpg" alt="The lander floating in the pool seen from above, with pool-noodle floats and a flag">
-        <figcaption>Pool Test Measuring Pressure and Temperature</figcaption>
-      </figure>
-      <figure style="flex: 0.79">
-        <img src="images/europa_lander/lander_underwater_rov.jpg" alt="The benthic lander underwater in green water, seen from an ROV">
-        <figcaption>Benthic Lander Underwater (Taken from a ROV)</figcaption>
-      </figure>
-    </div>
-    <p>
-      Over the period of a year we tested extensively in the pool and occasionally in the ocean. When we would test in the pool we would not test timed-releases
-      but we would video and collect water pressure data. We designed a setup within the tube where we can measure water pressure and therefore estimate how deep 
-      we are to ~10ft. We would test more or less every weekend in the pool whatever advancement we had made that week. 
-      <br><br>
-      The interesting tests were the ocean tests though. There we would test all the mechanisms we could. The first test we did, we went to the SF Bay,
-      which was a mistake. The water was very wavy, cold, and there was no visibility. We also were freezing in the high winds (we were right under the Golden Gate
-      Bridge). However, the lander performed very well! All video function worked perfectly and the timed-releases (it was the first test of them) worked all according
-      to plan. <br><br>
-      The next tests were much better. We emailed MBARI (Monterey Bay Aquarium Research Institute), and they took us out on their boat to 
-      test in deeper and clearer waters. We also integrated some bait hooks right in front of our cameras to hopefully capture some fish. 
-      The first tests we simply did off a pier (which also worked very well), and then we went on the boat for those tests. The boat tests worked 
-      perfectly according to plan, we were able to collect water pressure, water temperature, video footage, and water samples. The weight release
-      also worked as planned! Unfortunately we had a bad kind of bait and no fish wanted to be near us. 
-    </p>
-    </div>
-
-    <h2 id="future">Future Work</h2>
-    <hr>
-    <p>
-      The future of the Europa team is looking very exciting. At the end of last year, we decided we had tested the proof of concept enough and 
-      we bought a sphere rated for 12,000m (deeper than the Mariana Trench). We will be developing a aluminum structure and working the electronics
-      around the new housing. Perhaps the biggest change is redesigning all of the claws and soil/water/DNA collectors. We have many ideas how we use the 
-      changing pressures of going deep into powering DNA collectors and water samplers. 
-    </p>
-
-  </div>
-
-</div>
-<script src="personal_code.js"></script>
 <script src="robot_arm.js"></script> <!-- experimental robot arm; delete this line to remove -->
+<script src="site.js"></script>
 </body>
 </html>

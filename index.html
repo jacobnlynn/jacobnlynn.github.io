@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="risograph">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jacob Lynn</title>
-  <link rel="stylesheet" href="format.css">
-  <!-- Where the 3D viewer downloads three.js from -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700&family=Rubik+Mono+One&family=Silkscreen&family=Space+Mono:wght@400;700&family=VT323&display=swap">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="theme-risograph.css" id="theme-css">
+  <!-- Use the theme picked with the dark/light button (see site.js) -->
+  <script>
+    try {
+      if (localStorage.getItem("theme") === "cga") {
+        document.documentElement.dataset.theme = "cga";
+        document.getElementById("theme-css").href = "theme-cga.css";
+      }
+    } catch (error) {}
+  </script>
+  <!-- Where the 3D viewer downloads three.js from (only when first opened) -->
   <script type="importmap">
   {
     "imports": {
@@ -15,142 +29,173 @@
   </script>
 </head>
 <body>
-<div id="page">
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Window title bar; the buttons are run by personal_code.js -->
-  <div class="titlebar" id="window-title">
-    <span>Jacob Lynn - Portfolio</span>
-    <span class="window-buttons">
-      <button id="win-min" aria-label="Minimize"></button>
-      <button id="win-max" aria-label="Maximize"></button>
-      <button id="win-close" aria-label="Close">X</button>
-    </span>
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-current="page">Jacob Lynn</a>
+    <nav class="nav" aria-label="Site">
+      <a href="reconfigurable_robot.html">Robot Builder</a>
+      <a href="limbed_robot.html">Limbed Robot</a>
+      <a href="europa_lander.html">Europa Lander</a>
+      <a href="irec_payload.html">IREC Payload</a>
+      <a href="resume.pdf">Resume</a>
+    </nav>
   </div>
+</header>
 
-  <div id="tabs">
-    <a href="index.html" class="home current">Jacob Lynn</a>
-    <a href="reconfigurable_robot.html">Reconfigurable Robot Builder</a>
-    <a href="limbed_robot.html">Limbed Robot Project</a>
-    <a href="europa_lander.html">Europa - Benthic Lander</a>
-    <!-- ARMLab hidden for now: <a href="stanford_armlab.html">Stanford ARMLab</a> -->
-    <a href="irec_payload.html">IREC - Payload</a>
-  </div>
-  <div id="panel">
+<main id="main">
 
-    <h2>About Me</h2>
-    <hr>
-    <p>
-      Hi! I'm Jacob Lynn and I am a sophomore (Class of 2029) studying mechanical engineering with a minor in 
-      comp sci at Stanford University. I also do research in the Stanford ARMLab where I work on electromagnetic robotic muscles
-       for tendon-driven robot hands! I'm interested in robotics and space and I've always loved to create. My dream job would someday
-        be to work on space robotics :). This website is meant to serve as a portfolio of what I have made in college so far! I hope 
-        you look around, and please reach out to me if you have any questions or thoughts: <a href="mailto:jnlynn@stanford.edu">jnlynn@stanford.edu</a>
-    </p>
-
-    <h2>Resume</h2>
-    <hr>
-    <!-- Resume, live robot dog and quick facts side by side; wraps on narrow screens -->
-    <div class="window-row">
-      <a href="resume.pdf" id="resume-link" class="thumb">
-        <img src="resume_preview.jpg" alt="View my resume">
-        <span>resume.pdf</span>
-      </a>
-      <!-- Live spinning model, run by cad_viewer.js; the picture shows until it loads.
-           A random tab is picked on each visit, weighted by data-weight. -->
-      <div class="window cad-embed-window">
-        <div class="titlebar"><span class="cad-title">robot_dog.glb - 3D Viewer</span></div>
-        <div class="cad-view cad-embed" data-model="models/robot_dog.glb">
-          <img src="images/limbed_robot/robot_dog.jpg" alt="Robot dog CAD model">
-        </div>
-        <div class="cad-tabs" role="tablist" aria-label="Choose a model">
-          <button type="button" role="tab" aria-selected="true" data-weight="0.4"
-            data-model="models/robot_dog.glb" data-poster="images/limbed_robot/robot_dog.jpg"
-            data-caption="12-DoF robot dog" data-link="limbed_robot.html#dog">Robot Dog</button>
-          <button type="button" role="tab" aria-selected="false" data-weight="0.15"
-            data-model="models/5_Bar_Dog.glb" data-poster="images/limbed_robot/five_bar_dog.jpg"
-            data-caption="5-bar robot dog" data-link="limbed_robot.html#other">5-Bar Dog</button>
-          <button type="button" role="tab" aria-selected="false" data-weight="0.15"
-            data-model="models/7DOF_robot_arm_90_degrees.glb" data-poster="images/limbed_robot/arm_7dof_90.jpg"
-            data-caption="7-DoF arm, 90&deg; joints" data-link="limbed_robot.html#other">Arm 90&deg;</button>
-          <button type="button" role="tab" aria-selected="false" data-weight="0.15"
-            data-model="models/7DOF_robot_arm_45_degrees.glb" data-poster="images/limbed_robot/arm_7dof_45.jpg"
-            data-caption="7-DoF arm, 45&deg; joints" data-link="limbed_robot.html#other">Arm 45&deg;</button>
-          <button type="button" role="tab" aria-selected="false" data-weight="0.15"
-            data-model="models/RoboSimianMimic.glb" data-poster="images/limbed_robot/robosimian.jpg"
-            data-caption="RoboSimian mimic" data-link="limbed_robot.html#other">RoboSimian</button>
-        </div>
-        <div class="statusbar">
-          <span class="cad-caption">12-DoF robot dog</span>
-          <span class="cad-drag-hint">&nbsp;|&nbsp; Drag to rotate</span>
-          &nbsp;|&nbsp; <a class="cad-link" href="limbed_robot.html#dog">Read about it</a>
-        </div>
+  <div class="wrap home-hero">
+    <div class="hero-box intro">
+      <p class="kicker">Mechanical engineer &middot; Stanford '29</p>
+      <h1>Jacob Lynn</h1>
+      <p class="lede">
+        Mechanical engineering at Stanford, Class of 2029, with a minor in CS.
+        I build robots, and someday I want to build them for space.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#projects">See projects</a>
+        <a class="btn" href="resume.pdf">Resume (PDF)</a>
+        <a class="btn" href="mailto:jnlynn@stanford.edu">Email me</a>
       </div>
-      <!-- Quick facts, styled like the Windows 95 System Properties box -->
-      <div class="window sysprops">
-        <div class="titlebar"><span>System Properties</span></div>
-        <div class="window-body">
-          <dl>
-            <dt>System:</dt>
-            <dd>Jacob Lynn<br>Stanford University, Class of 2029</dd>
-            <dt>Major:</dt>
-            <dd>Mechanical Engineering</dd>
-            <dt>Minor:</dt>
-            <dd>Computer Science</dd>
-            <dt>Research:</dt>
-            <dd>Stanford ARMLab<br>Electromagnetic muscles for tendon-driven robot hands</dd>
-            <dt>Interests:</dt>
-            <dd>Robotics, space</dd>
-            <dt>Dream job:</dt>
-            <dd>Space robotics</dd>
-          </dl>
-          <div class="window-actions">
-            <a href="mailto:jnlynn@stanford.edu" class="button">Contact...</a>
+    </div>
+
+    <!-- Live spinning model, run by cad_viewer.js; the picture shows until it loads.
+         A random tab is picked on each visit, weighted by data-weight. -->
+    <div class="viewer-box">
+      <div class="box-head"><span class="cad-title">robot_dog.glb - 3D Viewer</span></div>
+      <div class="cad-view cad-embed" data-model="models/robot_dog.glb">
+        <img src="images/limbed_robot/robot_dog.jpg" alt="Robot dog CAD model">
+      </div>
+      <div class="cad-tabs" role="tablist" aria-label="Choose a model">
+        <button type="button" role="tab" aria-selected="true" data-weight="0.4"
+          data-model="models/robot_dog.glb" data-poster="images/limbed_robot/robot_dog.jpg"
+          data-caption="12-DoF robot dog" data-link="limbed_robot.html#dog">Robot Dog</button>
+        <button type="button" role="tab" aria-selected="false" data-weight="0.15"
+          data-model="models/5_Bar_Dog.glb" data-poster="images/limbed_robot/five_bar_dog.jpg"
+          data-caption="5-bar robot dog" data-link="limbed_robot.html#other">5-Bar Dog</button>
+        <button type="button" role="tab" aria-selected="false" data-weight="0.15"
+          data-model="models/7DOF_robot_arm_90_degrees.glb" data-poster="images/limbed_robot/arm_7dof_90.jpg"
+          data-caption="7-DoF arm, 90&deg; joints" data-link="limbed_robot.html#other">Arm 90&deg;</button>
+        <button type="button" role="tab" aria-selected="false" data-weight="0.15"
+          data-model="models/7DOF_robot_arm_45_degrees.glb" data-poster="images/limbed_robot/arm_7dof_45.jpg"
+          data-caption="7-DoF arm, 45&deg; joints" data-link="limbed_robot.html#other">Arm 45&deg;</button>
+        <button type="button" role="tab" aria-selected="false" data-weight="0.15"
+          data-model="models/RoboSimianMimic.glb" data-poster="images/limbed_robot/robosimian.jpg"
+          data-caption="RoboSimian mimic" data-link="limbed_robot.html#other">RoboSimian</button>
+      </div>
+      <div class="statusbar">
+        <span class="cad-caption">12-DoF robot dog</span>
+        <span class="cad-drag-hint">&nbsp;|&nbsp; Drag to rotate</span>
+        &nbsp;|&nbsp; <a class="cad-link" href="limbed_robot.html#dog">Read about it</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" id="about">
+    <div class="wrap">
+      <h2>About Me</h2>
+      <div class="about">
+        <div>
+          <p>
+            Hi! I'm Jacob Lynn and I am a sophomore (Class of 2029) studying mechanical engineering with a minor in
+            comp sci at Stanford University. I also do research in the Stanford ARMLab where I work on electromagnetic robotic muscles
+            for tendon-driven robot hands! I'm interested in robotics and space and I've always loved to create. My dream job would someday
+            be to work on space robotics :).
+          </p>
+          <p>
+            This website is meant to serve as a portfolio of what I have made in college so far! I hope
+            you look around, and please reach out to me if you have any questions or thoughts:
+            <a href="mailto:jnlynn@stanford.edu">jnlynn@stanford.edu</a>
+          </p>
+        </div>
+        <dl class="facts">
+          <dt>School</dt><dd>Stanford University, Class of 2029</dd>
+          <dt>Major</dt><dd>Mechanical Engineering</dd>
+          <dt>Minor</dt><dd>Computer Science</dd>
+          <dt>Research</dt><dd>Stanford ARMLab: electromagnetic muscles for tendon-driven robot hands</dd>
+          <dt>Interests</dt><dd>Robotics, space</dd>
+          <dt>Dream job</dt><dd>Space robotics</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="resume">
+    <div class="wrap">
+      <h2>Resume</h2>
+      <div class="resume-block">
+        <a class="resume-thumb" href="resume.pdf">
+          <img src="resume_preview.jpg" alt="Preview of my resume">
+        </a>
+        <div>
+          <p>Click the preview to open my resume as a PDF.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="resume.pdf">Open resume (PDF)</a>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <h2>Projects</h2>
-    <hr>
-    <div class="thumbs">
-      <a href="reconfigurable_robot.html" class="thumb project">
-        <img src="reconfigurable_robot_preview.jpg" alt="Reconfigurable Robot Builder">
-        <span>Reconfigurable Robot Builder</span>
-      </a>
-      <a href="limbed_robot.html" class="thumb project">
-        <img src="limbed_robot_preview.jpg" alt="Limbed Robot Project">
-        <span>Limbed Robot Project</span>
-      </a>
-      <a href="europa_lander.html" class="thumb project">
-        <img src="europa_lander_preview.jpg" alt="Europa - Benthic Lander">
-        <span>Europa - Benthic Lander</span>
-      </a>
-      <!-- ARMLab hidden for now
-      <a href="stanford_armlab.html" class="thumb project">
-        <img src="stanford_armlab_preview.jpg" alt="Stanford ARMLab">
-        <span>Stanford ARMLab</span>
-      </a>
-      -->
-      <a href="irec_payload.html" class="thumb project">
-        <img src="irec_payload_preview.jpg" alt="IREC - Payload">
-        <span>IREC - Payload</span>
-      </a>
+  <section class="section" id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <div class="cards">
+        <a class="card" href="reconfigurable_robot.html">
+          <div class="card-img"><img src="reconfigurable_robot_preview.jpg" alt=""></div>
+          <div class="card-body">
+            <span class="tag">Web tool</span>
+            <h3>Reconfigurable Robot Builder</h3>
+            <p>A browser tool for assembling robots from modular actuators (motor + gearbox stacks) and links, defined by D-H parameters.</p>
+            <span class="more">Read more &rarr;</span>
+          </div>
+        </a>
+        <a class="card" href="limbed_robot.html">
+          <div class="card-img"><img src="limbed_robot_preview.jpg" alt=""></div>
+          <div class="card-body">
+            <span class="tag">Hardware</span>
+            <h3>Limbed Robot Project</h3>
+            <p>A generic framework for limbed robots: swappable QDD gearboxes and screw-in links. Built a 12-DoF robot dog with it.</p>
+            <span class="more">Read more &rarr;</span>
+          </div>
+        </a>
+        <a class="card" href="europa_lander.html">
+          <div class="card-img"><img src="europa_lander_preview.jpg" alt=""></div>
+          <div class="card-body">
+            <span class="tag">SSI</span>
+            <h3>Europa - Benthic Lander</h3>
+            <p>Co-leading a low-cost (&lt;$5k) open-source benthic lander for trench-depth ocean research.</p>
+            <span class="more">Read more &rarr;</span>
+          </div>
+        </a>
+        <a class="card" href="irec_payload.html">
+          <div class="card-img"><img src="irec_payload_preview.jpg" alt=""></div>
+          <div class="card-body">
+            <span class="tag">SSI</span>
+            <h3>IREC - Payload</h3>
+            <p>Mechanical redesign of a 100&times;100&times;200 mm payload that grows crystals in microgravity.</p>
+            <span class="more">Read more &rarr;</span>
+          </div>
+        </a>
+      </div>
     </div>
+  </section>
 
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>&copy; 2026 Jacob Lynn &middot; <a href="mailto:jnlynn@stanford.edu">jnlynn@stanford.edu</a></span>
+    <span class="foot-links">
+      <a href="classic/index.html">Windows 95 version</a>
+    </span>
   </div>
+</footer>
 
-  <!-- Pop-up window for the resume, opened by personal_code.js -->
-  <dialog id="resume-window">
-    <div class="titlebar">
-      <span>resume.pdf</span>
-      <button id="resume-close" aria-label="Close">X</button>
-    </div>
-    <iframe title="Resume"></iframe>
-  </dialog>
-
-</div>
-<script src="personal_code.js"></script>
 <script src="robot_arm.js"></script> <!-- experimental robot arm; delete this line to remove -->
+<script src="site.js"></script>
 <script type="module" src="cad_viewer.js"></script>
 </body>
 </html>

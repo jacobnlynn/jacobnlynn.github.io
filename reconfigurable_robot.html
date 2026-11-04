@@ -1,37 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="risograph">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Reconfigurable Robot Builder - Jacob Lynn</title>
-  <link rel="stylesheet" href="format.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700&family=Rubik+Mono+One&family=Silkscreen&family=Space+Mono:wght@400;700&family=VT323&display=swap">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="theme-risograph.css" id="theme-css">
+  <!-- Use the theme picked with the dark/light button (see site.js) -->
+  <script>
+    try {
+      if (localStorage.getItem("theme") === "cga") {
+        document.documentElement.dataset.theme = "cga";
+        document.getElementById("theme-css").href = "theme-cga.css";
+      }
+    } catch (error) {}
+  </script>
 </head>
 <body>
-<div id="page">
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Window title bar; the buttons are run by personal_code.js -->
-  <div class="titlebar" id="window-title">
-    <span>Reconfigurable Robot Builder - Jacob Lynn</span>
-    <span class="window-buttons">
-      <button id="win-min" aria-label="Minimize"></button>
-      <button id="win-max" aria-label="Maximize"></button>
-      <button id="win-close" aria-label="Close">X</button>
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="index.html">Jacob Lynn</a>
+    <nav class="nav" aria-label="Site">
+      <a href="reconfigurable_robot.html" aria-current="page">Robot Builder</a>
+      <a href="limbed_robot.html">Limbed Robot</a>
+      <a href="europa_lander.html">Europa Lander</a>
+      <a href="irec_payload.html">IREC Payload</a>
+      <a href="resume.pdf">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="page-hero">
+    <div class="wrap">
+      <div class="hero-box">
+        <p class="kicker">Web tool</p>
+        <h1>Reconfigurable Robot Builder</h1>
+        <p class="lede">
+          A browser tool for assembling a robot from modular actuators (motor + gearbox stack) and links, defined by D-H parameters.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://jacobnlynn.github.io/robot_builder/" target="_blank" rel="noopener">Open full screen</a>
+          <a class="btn" href="limbed_robot.html">The hardware behind it</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" id="builder">
+    <div class="wrap">
+      <h2>Try It</h2>
+      <div class="embed-frame">
+        <iframe src="https://jacobnlynn.github.io/robot_builder/" title="Reconfigurable Robot Builder"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <nav class="wrap pager" aria-label="More projects">
+    <a class="prev" href="irec_payload.html"><small>&larr; Previous</small>IREC - Payload</a>
+    <a class="next" href="limbed_robot.html"><small>Next &rarr;</small>Limbed Robot Project</a>
+  </nav>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>&copy; 2026 Jacob Lynn &middot; <a href="mailto:jnlynn@stanford.edu">jnlynn@stanford.edu</a></span>
+    <span class="foot-links">
+      <a href="classic/reconfigurable_robot.html">Windows 95 version</a>
     </span>
   </div>
+</footer>
 
-  <div id="tabs">
-    <a href="index.html" class="home">Jacob Lynn</a>
-    <a href="reconfigurable_robot.html" class="current">Reconfigurable Robot Builder</a>
-    <a href="limbed_robot.html">Limbed Robot Project</a>
-    <a href="europa_lander.html">Europa - Benthic Lander</a>
-    <!-- ARMLab hidden for now: <a href="stanford_armlab.html">Stanford ARMLab</a> -->
-    <a href="irec_payload.html">IREC - Payload</a>
-  </div>
-  <div id="panel" class="embed">
-    <iframe src="https://jacobnlynn.github.io/robot_builder/" title="Reconfigurable Robot Builder"></iframe>
-  </div>
-
-</div>
-<script src="personal_code.js"></script>
 <script src="robot_arm.js"></script> <!-- experimental robot arm; delete this line to remove -->
+<script src="site.js"></script>
 </body>
 </html>

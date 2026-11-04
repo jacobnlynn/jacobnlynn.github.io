@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jacob Lynn - cga mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700&family=Rubik+Mono+One&family=Space+Mono:wght@400;700&family=Pixelify+Sans:wght@400;500;700&family=Silkscreen&family=VT323&display=swap">
+<style>
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; }
+img { display: block; max-width: 100%; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+.site-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.nav { display: flex; gap: 10px; flex-wrap: wrap; }
+.nav a { text-decoration: none; }
+.hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; }
+.hero h1 { margin: 0; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 24px; }
+.btn { display: inline-block; text-decoration: none; }
+.about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: start; }
+.facts { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; }
+.facts dd { margin: 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
+.card { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
+.card-img { aspect-ratio: 4 / 3; overflow: hidden; }
+.card-img img { width: 100%; height: 100%; object-fit: cover; }
+.card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.card-body h3, .card-body p { margin: 0; }
+.more { margin-top: auto; padding-top: 6px; }
+.switch { position: fixed; right: 12px; bottom: 12px; display: flex; gap: 6px; z-index: 10; }
+.switch a { text-decoration: none; padding: 4px 10px; }
+@media (max-width: 760px) {
+  .hero, .about { grid-template-columns: 1fr; }
+}
+
+:root { --black: #000; --cyan: #55ffff; --magenta: #ff55ff; --white: #fff; }
+body { background: var(--black); color: var(--cyan); font: 21px/1.3 "VT323", Consolas, monospace; -webkit-font-smoothing: none; }
+::selection { background: var(--magenta); color: var(--black); }
+a { color: var(--magenta); }
+a:hover { background: var(--magenta); color: var(--black); }
+:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
+
+.site-head { padding: 12px 0; }
+.site-head .wrap { border: 6px double var(--white); padding: 6px 14px; max-width: 1040px; }
+.logo { font: 400 18px "Silkscreen", monospace; color: var(--white); text-decoration: none; }
+.logo::before { content: "\263A "; color: var(--magenta); }
+.logo:hover { background: none; color: var(--white); }
+.nav { gap: 6px; }
+.nav a { color: var(--black); padding: 0 10px; }
+.nav a:nth-child(odd) { background: var(--cyan); }
+.nav a:nth-child(even) { background: var(--magenta); }
+.nav a:hover { background: var(--black); color: var(--white); box-shadow: inset 0 0 0 2px var(--white); }
+.nav a::first-letter { text-decoration: underline; }
+
+.hero-band { padding: 28px 0 12px; }
+.hero-text { border: 6px double var(--cyan); padding: 20px 24px; }
+.kicker { margin: 0 0 8px; color: var(--white); }
+.kicker::after { content: "_"; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.hero h1 { font: 400 clamp(34px, 6vw, 56px)/1.05 "Silkscreen", monospace; color: var(--white); text-shadow: 4px 4px 0 var(--magenta); }
+.lede { margin: 14px 0 0; }
+.btn { padding: 2px 14px; border: 2px solid var(--cyan); color: var(--cyan); }
+.btn-primary { background: var(--cyan); color: var(--black); }
+.btn:hover { background: var(--white); border-color: var(--white); color: var(--black); }
+.btn::before { content: "\25BA "; }
+.hero-fig { margin: 0; border: 6px double var(--magenta); padding: 6px; }
+.hero-img, .card-img { background: var(--cyan); }
+.hero-img img, .card-img img { filter: grayscale(1) contrast(1.35); mix-blend-mode: multiply; }
+.hero-fig figcaption { margin-top: 6px; color: var(--magenta); text-align: center; }
+
+.band { padding: 26px 0; }
+h2 { margin: 0 0 18px; font: 400 20px "Silkscreen", monospace; color: var(--white); }
+h2::before { content: "\2550\2550\2561 "; color: var(--cyan); }
+h2::after { content: " \255E\2550\2550"; color: var(--cyan); }
+.panel { border: 2px solid var(--cyan); padding: 14px 18px; }
+.panel p:first-child { margin-top: 0; }
+.panel p:last-child { margin-bottom: 0; }
+.facts { border: 6px double var(--white); gap: 4px 14px; }
+.facts dt { color: var(--magenta); }
+.facts dt::after { content: ":"; }
+.facts dd { color: var(--white); }
+
+.card { border: 2px solid var(--cyan); }
+.card:hover { border-color: var(--magenta); background: none; color: inherit; }
+.card:hover .card-img { background: var(--magenta); }
+.card-img { border-bottom: 2px solid var(--cyan); }
+.card:hover .card-img { border-color: var(--magenta); }
+.card h3 { font: 400 15px/1.3 "Silkscreen", monospace; color: var(--white); }
+.card p { font-size: 19px; }
+.tag { align-self: flex-start; background: var(--magenta); color: var(--black); padding: 0 6px; font-size: 17px; text-transform: uppercase; }
+.more { color: var(--magenta); }
+.card:hover .more { background: var(--magenta); color: var(--black); align-self: flex-start; }
+
+.site-foot { padding: 14px 0 64px; }
+.site-foot .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; background: var(--cyan); color: var(--black); padding: 2px 14px; max-width: 1040px; }
+.site-foot a { color: var(--black); }
+.switch a { background: var(--black); color: var(--cyan); border: 2px solid var(--cyan); padding: 0 10px; text-transform: uppercase; }
+.switch a[aria-current] { background: var(--cyan); color: var(--black); }
+
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="#top">Jacob Lynn</a>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="../resume.pdf">Resume</a>
+      <a href="mailto:jnlynn@stanford.edu">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero-band">
+    <div class="wrap hero">
+      <div class="hero-text">
+        <p class="kicker">C:\JACOB&gt; whoami</p>
+        <h1>Jacob Lynn</h1>
+        <p class="lede">Mechanical engineering at Stanford, Class of 2029, with a minor in CS. I build robots, and someday I want to build them for space.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">See projects</a>
+          <a class="btn btn-secondary" href="../resume.pdf">Resume (PDF)</a>
+        </div>
+      </div>
+      <figure class="hero-fig">
+        <div class="hero-img"><img src="../images/limbed_robot/robot_dog.jpg" alt="12-DoF robot dog CAD model"></div>
+        <figcaption>12-DoF robot dog, mostly 3D printed</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="about" class="band">
+    <div class="wrap">
+      <h2>About me</h2>
+      <div class="about">
+        <div class="panel">
+          <p>Hi! I'm Jacob Lynn and I am a sophomore (Class of 2029) studying mechanical engineering with a minor in
+          comp sci at Stanford University. I also do research in the Stanford ARMLab where I work on electromagnetic robotic muscles
+          for tendon-driven robot hands! I'm interested in robotics and space and I've always loved to create. My dream job would someday
+          be to work on space robotics :).</p>
+          <p>This website is meant to serve as a portfolio of what I have made in college so far! I hope
+          you look around, and please reach out to me if you have any questions or thoughts:
+          <a href="mailto:jnlynn@stanford.edu">jnlynn@stanford.edu</a></p>
+        </div>
+        <dl class="facts panel">
+        <dt>School</dt><dd>Stanford University, Class of 2029</dd>
+        <dt>Major</dt><dd>Mechanical Engineering</dd>
+        <dt>Minor</dt><dd>Computer Science</dd>
+        <dt>Research</dt><dd>Stanford ARMLab: electromagnetic muscles for tendon-driven robot hands</dd>
+        <dt>Interests</dt><dd>Robotics, space</dd>
+        <dt>Dream job</dt><dd>Space robotics</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="band">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <div class="grid">
+      <a class="card" href="../reconfigurable_robot.html">
+        <div class="card-img"><img src="../reconfigurable_robot_preview.jpg" alt=""></div>
+        <div class="card-body">
+          <span class="tag">Web tool</span>
+          <h3>Reconfigurable Robot Builder</h3>
+          <p>A browser tool for assembling robots from modular actuators (motor + gearbox stacks) and links, defined by D-H parameters.</p>
+          <span class="more">Read more &rarr;</span>
+        </div>
+      </a>
+      <a class="card" href="../limbed_robot.html">
+        <div class="card-img"><img src="../limbed_robot_preview.jpg" alt=""></div>
+        <div class="card-body">
+          <span class="tag">Hardware</span>
+          <h3>Limbed Robot Project</h3>
+          <p>A generic framework for limbed robots: swappable QDD gearboxes and screw-in links. Built a 12-DoF robot dog with it.</p>
+          <span class="more">Read more &rarr;</span>
+        </div>
+      </a>
+      <a class="card" href="../europa_lander.html">
+        <div class="card-img"><img src="../europa_lander_preview.jpg" alt=""></div>
+        <div class="card-body">
+          <span class="tag">SSI</span>
+          <h3>Europa - Benthic Lander</h3>
+          <p>Co-leading a low-cost (&lt;$5k) open-source benthic lander for trench-depth ocean research.</p>
+          <span class="more">Read more &rarr;</span>
+        </div>
+      </a>
+      <a class="card" href="../irec_payload.html">
+        <div class="card-img"><img src="../irec_payload_preview.jpg" alt=""></div>
+        <div class="card-body">
+          <span class="tag">SSI</span>
+          <h3>IREC - Payload</h3>
+          <p>Mechanical redesign of a 100&times;100&times;200 mm payload that grows crystals in microgravity.</p>
+          <span class="more">Read more &rarr;</span>
+        </div>
+      </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>&copy; 2026 Jacob Lynn</span>
+    <a href="mailto:jnlynn@stanford.edu">jnlynn@stanford.edu</a>
+  </div>
+</footer>
+
+<nav class="switch" aria-label="Mockup theme"><a href="pixel.html">pixel</a> <a href="cga.html" aria-current="page">cga</a> <a href="risograph.html">risograph</a></nav>
+</body>
+</html>

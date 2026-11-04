@@ -20,7 +20,7 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: url("images/galaxy_wallpaper.png") center / cover no-repeat;
+  background: url("../images/galaxy_wallpaper.png") center / cover no-repeat;
   image-rendering: pixelated;
 }
 
@@ -673,7 +673,7 @@ body.closed #task-window {
 .start-logo {
   width: 32px;
   height: 32px;
-  background: url("images/icons/start_me.svg") center / contain no-repeat;
+  background: url("../images/icons/start_me.svg") center / contain no-repeat;
   image-rendering: pixelated;
 }
 

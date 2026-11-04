@@ -224,7 +224,7 @@ if (page) {
     addItem(tab.classList.contains("home") ? "Home" : tab.textContent, tab.getAttribute("href"));
   });
   addSeparator();
-  addItem("Resume", "resume.pdf");
+  addItem("Resume", "../resume.pdf");
   addItem("Email Me", "mailto:jnlynn@stanford.edu");
 
   function setMenuOpen(open) {
@@ -257,7 +257,7 @@ if (page) {
     link.setAttribute("aria-label", tab.textContent);
     if (href === thisPage) link.classList.add("pressed");
     const icon = document.createElement("img");
-    icon.src = "images/icons/" + href.replace(/\.html$/, "") + ".svg";
+    icon.src = "../images/icons/" + href.replace(/\.html$/, "") + ".svg";
     icon.alt = "";
     icon.addEventListener("error", function () {
       link.textContent = tab.textContent.charAt(0);

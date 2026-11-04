@@ -1,0 +1,502 @@
+/* Layout shared by both themes: sizes, grids and spacing only.
+   Colours, fonts and borders live in theme-cga.css and theme-risograph.css. */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+  z-index: 100;
+}
+
+/* ---- Header ---- */
+
+.site-head .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+}
+
+.nav a {
+  text-decoration: none;
+}
+
+/* ---- Page heading and in-page contents ---- */
+
+.page-hero {
+  padding: 40px 0 12px;
+}
+
+.page-hero h1 {
+  margin: 0;
+}
+
+.kicker {
+  margin: 0 0 10px;
+}
+
+.lede {
+  margin: 16px 0 0;
+  max-width: 62ch;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+}
+
+.toc a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* ---- Sections ---- */
+
+.section {
+  padding: 32px 0;
+  scroll-margin-top: 12px;
+}
+
+.section h2 {
+  margin: 0 0 18px;
+}
+
+.section h3 {
+  margin: 26px 0 8px;
+  scroll-margin-top: 12px;
+}
+
+.section p {
+  margin: 0 0 1em;
+}
+
+/* Text on the left, pictures on the right; stacks on narrow screens */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.75fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.split.wide-figs {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.split.narrow-figs {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.45fr);
+}
+
+.figs {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Pictures side by side. For pictures of different shapes, set each
+   figure's flex to its width / height so they come out the same height. */
+.fig-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.fig-row figure {
+  flex: 1;
+  min-width: 0;
+}
+
+.fig-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+figure {
+  margin: 0;
+}
+
+figure img {
+  width: 100%;
+}
+
+figure img.enlargeable {
+  cursor: zoom-in;
+}
+
+figcaption {
+  margin-top: 6px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 16px;
+  margin-top: 26px;
+}
+
+.gallery img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.mini-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.mini-row img {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+/* ---- CAD model buttons (open the 3D viewer, see cad_viewer.js) ---- */
+
+.cad-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.cad-launch {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cad-launch.single {
+  max-width: 440px;
+}
+
+.cad-launch img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.cad-label {
+  padding: 8px 12px;
+}
+
+/* ---- Home page ---- */
+
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: center;
+  padding: 44px 0 28px;
+}
+
+.home-hero h1 {
+  margin: 0;
+}
+
+/* Live spinning model; the picture shows until it loads */
+.cad-embed {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.cad-embed img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cad-embed canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.cad-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.cad-tabs button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.box-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 16px;
+  margin: 0;
+}
+
+.facts dd {
+  margin: 0;
+}
+
+.resume-block {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.resume-thumb {
+  display: block;
+  width: 200px;
+  flex: none;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-img {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  padding: 14px 16px 16px;
+}
+
+.card-body h3,
+.card-body p {
+  margin: 0;
+}
+
+.more {
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+/* ---- Embedded website (reconfigurable_robot.html) ---- */
+
+.embed-frame iframe {
+  display: block;
+  width: 100%;
+  height: max(560px, 80vh);
+  border: 0;
+}
+
+/* ---- Previous / next project ---- */
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 28px 20px 36px;
+}
+
+.pager a {
+  text-decoration: none;
+}
+
+.pager .next {
+  margin-left: auto;
+  text-align: right;
+}
+
+/* ---- Footer ---- */
+
+.site-foot .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 24px;
+  flex-wrap: wrap;
+}
+
+.foot-links {
+  display: flex;
+  gap: 8px 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Dark/light and robot arm buttons, built by site.js; they float in the
+   corner while the page scrolls */
+.float-controls {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 50;
+  display: flex;
+  gap: 8px;
+}
+
+.float-controls button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ---- Pop-up windows: photo viewer and 3D viewer ---- */
+
+dialog {
+  padding: 0;
+  max-width: 94vw;
+  max-height: 94vh;
+}
+
+dialog .titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+dialog .close {
+  font: inherit;
+  cursor: pointer;
+}
+
+#photo-window {
+  width: min(1100px, 94vw);
+}
+
+.photo-view img {
+  max-width: 100%;
+  max-height: 72vh;
+  margin: 0 auto;
+}
+
+.photo-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.photo-controls button {
+  font: inherit;
+  cursor: pointer;
+  flex: none;
+}
+
+.photo-caption {
+  text-align: center;
+}
+
+#cad-window {
+  width: min(1000px, 94vw);
+}
+
+#cad-window .cad-view {
+  height: min(70vh, 640px);
+}
+
+@media (max-width: 820px) {
+  .split,
+  .split.wide-figs,
+  .split.narrow-figs,
+  .home-hero,
+  .about {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .fig-row {
+    flex-direction: column;
+  }
+
+  .fig-row figure {
+    flex: none !important;
+    width: 100%;
+  }
+}
