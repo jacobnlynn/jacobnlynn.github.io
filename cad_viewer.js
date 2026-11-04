@@ -173,16 +173,59 @@ document.querySelectorAll(".cad-embed").forEach(function (view) {
   }).observe(view);
 });
 
+// ---- Model colours ----
+// The models are exported from Fusion with a few materials (matched by name
+// below). On the new site (pages with <html data-theme>) they're repainted in
+// the risograph inks; the classic site keeps the exported colours.
+
+const RISOGRAPH_LOOK = {
+  background: 0xf4f1ea, // paper
+  grid: [0x8fa3e6, 0xd3dbf3],
+  materials: [
+    { match: /steel/i, color: 0xbccbf5 }, // faint blue ink
+    { match: /opaque|232,173,35/i, color: 0xffc2dc }, // faint pink ink
+    { match: /abs|white/i, color: 0xf4f1ea }, // paper
+  ],
+};
+
+const CLASSIC_LOOK = {
+  background: 0xffffff,
+  grid: [0xb0b0b0, 0xdddddd],
+  materials: [],
+};
+
+function pageLook() {
+  return document.documentElement.dataset.theme ? RISOGRAPH_LOOK : CLASSIC_LOOK;
+}
+
+// Swap each material's colour for the look's ink, and make it flat and matte
+// like printed ink instead of shiny metal
+function paint(object, look) {
+  if (!look.materials.length) return;
+  object.traverse(function (child) {
+    if (!child.isMesh) return;
+    const materials = Array.isArray(child.material) ? child.material : [child.material];
+    materials.forEach(function (material) {
+      const ink = look.materials.find(function (rule) { return rule.match.test(material.name); });
+      if (!ink) return;
+      material.color.setHex(ink.color);
+      material.metalness = 0;
+      material.roughness = 0.85;
+    });
+  });
+}
+
 async function createViewer(container) {
   const THREE = await import("three");
   const { OrbitControls } = await import("three/addons/controls/OrbitControls.js");
+  const look = pageLook();
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
   container.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xffffff);
+  scene.background = new THREE.Color(look.background);
   scene.add(new THREE.HemisphereLight(0xffffff, 0x808080, 2));
   const sun = new THREE.DirectionalLight(0xffffff, 2);
   sun.position.set(1, 2, 1.5);
@@ -257,6 +300,7 @@ async function createViewer(container) {
 
       if (model) scene.remove(model);
       if (grid) scene.remove(grid);
+      paint(object, look);
 
       // Center the model and sit it on a grid, whatever units it was exported in
       const box = new THREE.Box3().setFromObject(object);
@@ -268,7 +312,7 @@ async function createViewer(container) {
       model.add(object);
       scene.add(model);
 
-      grid = new THREE.GridHelper(radius * 4, 20, 0xb0b0b0, 0xdddddd);
+      grid = new THREE.GridHelper(radius * 4, 20, look.grid[0], look.grid[1]);
       grid.position.y = -size.y / 2;
       scene.add(grid);
 
